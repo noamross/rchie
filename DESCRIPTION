@@ -8,5 +8,5 @@ Maintainer: Noam Ross <noam.ross@gmail.com>
 Description: Parses the NYT's archieML specification, using their javascript parser (archieml-js) and V8
 License: MIT
 Imports: V8, jsonlite
-Suggests: testthat
+Suggests: testthat, covr
 LazyData: TRUE
