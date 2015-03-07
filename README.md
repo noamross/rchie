@@ -6,7 +6,9 @@ to include structured data in free-form documents.
 
 Right now it just has one function, `from_archie`, which loads ArchieML data from a string, file, or URL.
 
-archieml-js parses ArchieML to JSON.  It is run using V8, and then the JSON data is imported via jsonlite.
+archieml-js (included under `inst`, using `git subtree`) parses ArchieML to JSON.  It is run using V8, and then the JSON data is imported via jsonlite.
+
+
 
 ## Install
 
