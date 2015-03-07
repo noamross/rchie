@@ -16,6 +16,8 @@ archieml-js (included under `inst`, using `git subtree`) parses ArchieML to JSON
 
 ## Install
 
+Note that, because it uses the V8 package, rchie has a system requirement of libv8.
+
 ```
 library(devtools)
 install_github('noamross/rchie')
