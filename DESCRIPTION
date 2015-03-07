@@ -5,7 +5,9 @@ Version: 0.1
 Date: 2015-03-07
 Author: Noam Ross
 Maintainer: Noam Ross <noam.ross@gmail.com>
-Description: Parses the NYT's archieML specification, using their javascript parser and V8
-License: Apache 2.0
+Description: Parses the NYT's archieML specification, using their javascript parser (archieml-js) and V8
+License: MIT
+Imports: V8, jsonlite
+Suggests: testthat
 LazyData: TRUE
 Suggests: testthat
