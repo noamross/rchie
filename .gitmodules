@@ -1,0 +1,3 @@
+[submodule "inst/archieml-js"]
+	path = inst/archieml-js
+	url = git@github.com:newsdev/archieml-js.git

@@ -1,0 +1,11 @@
+Package: rchie
+Type: Package
+Title: A Parser for ArchieML
+Version: 0.1
+Date: 2015-03-07
+Author: Noam Ross
+Maintainer: Noam Ross <noam.ross@gmail.com>
+Description: Parses the NYT's archieML specification, using their javascript parser and V8
+License: Apache 2.0
+LazyData: TRUE
+Suggests: testthat
