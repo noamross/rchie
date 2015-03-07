@@ -2,7 +2,7 @@
 % Please edit documentation in R/from_archie.R
 \name{from_archie}
 \alias{from_archie}
-\title{Import archieML data from a string, file, or URL}
+\title{Import ArchieML data from a string, file, or URL}
 \usage{
 from_archie(txt)
 }

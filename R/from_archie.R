@@ -1,4 +1,4 @@
-#' Import archieML data from a string, file, or URL
+#' Import ArchieML data from a string, file, or URL
 #'
 #' This imports data from  New York Times' ArchieML format
 #' as an R object.  Text is parsed to JSON using archieml-js, then imported via jsonlite.

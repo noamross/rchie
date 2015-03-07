@@ -3,10 +3,9 @@
 \docType{package}
 \name{rchie-package}
 \alias{rchie-package}
-\title{Conway-Maxwell Poisson Distribution}
+\title{Import ArchieML Data}
 \description{
-Provides routines for computing the density of the Conway-Maxwell Poisson
-distribution and fitting parameters to data.
+Parses ArchieML data (\url{http:://archieml.org}) using the archieml-js library
 }
 \details{
 \tabular{ll}{ Package: \tab rchie\cr Type: \tab Package\cr Version:
