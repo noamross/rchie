@@ -2,12 +2,13 @@
 #'
 #' This imports data from a string, file, or URL that is in the New York Times' ArchieML format
 #' as an R object.  Text is parsed to JSON using archieml-js, then imported via jsonlite.
+#' @examples
+#'    from_archie(txt = 'key: value')
 #' @references \url{http://archieml.org/}
 #' @import V8
 #' @import jsonlite
 #' @export
-#'
-from_archie <- function(txt, ...) {
+from_archie <- function(txt) {
 	if (!is.character(txt)) {
 		stop("Argument 'txt' must be an ArchieML string, URL or path to existing file.")
 	}
