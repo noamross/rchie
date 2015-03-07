@@ -10,4 +10,3 @@ License: MIT
 Imports: V8, jsonlite
 Suggests: testthat
 LazyData: TRUE
-Suggests: testthat
