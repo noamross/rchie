@@ -1,7 +1,9 @@
 #' Import archieML data from a string, file, or URL
 #'
-#' This imports data from a string, file, or URL that is in the New York Times' ArchieML format
+#' This imports data from  New York Times' ArchieML format
 #' as an R object.  Text is parsed to JSON using archieml-js, then imported via jsonlite.
+#'
+#' @param txt a string, file, or URL in ArchieML format
 #' @examples
 #'    from_archie(txt = 'key: value')
 #' @references \url{http://archieml.org/}

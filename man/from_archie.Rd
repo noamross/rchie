@@ -6,8 +6,11 @@
 \usage{
 from_archie(txt)
 }
+\arguments{
+\item{txt}{a string, file, or URL in ArchieML format}
+}
 \description{
-This imports data from a string, file, or URL that is in the New York Times' ArchieML format
+This imports data from  New York Times' ArchieML format
 as an R object.  Text is parsed to JSON using archieml-js, then imported via jsonlite.
 }
 \examples{
