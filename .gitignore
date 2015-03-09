@@ -3,3 +3,4 @@
 .RData
 .DS_store
 *.Rproj
+.httr-oauth

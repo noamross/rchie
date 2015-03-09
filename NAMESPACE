@@ -3,3 +3,5 @@
 export(from_archie)
 import(V8)
 import(jsonlite)
+import(rmarkdown)
+import(tools)

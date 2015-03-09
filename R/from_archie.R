@@ -3,12 +3,16 @@
 #' This imports data from  New York Times' ArchieML format
 #' as an R object.  Text is parsed to JSON using archieml-js, then imported via jsonlite.
 #'
+#'
+#'
 #' @param txt a string, file, or URL in ArchieML format
 #' @examples
 #'    from_archie(txt = 'key: value')
 #' @references \url{http://archieml.org/}
 #' @import V8
 #' @import jsonlite
+#' @import rmarkdown
+#' @import tools
 #' @export
 from_archie <- function(txt) {
 	if (!is.character(txt)) {
@@ -20,7 +24,11 @@ from_archie <- function(txt) {
 			txt <- jsonlite:::raw_to_json(jsonlite:::download_raw(txt))
 		}
 		else if (file.exists(txt)) {
-			txt <- jsonlite:::raw_to_json(readBin(txt, raw(), file.info(txt)$size))
+			if(tools:::file_ext(txt) == "docx") {
+				txt = get_docx_text(txt)
+			} else {
+				txt <- jsonlite:::raw_to_json(readBin(txt, raw(), file.info(txt)$size))
+			}
 		}
 	}
 	if (length(txt) > 1) {
