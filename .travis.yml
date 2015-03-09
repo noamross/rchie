@@ -1,27 +1,17 @@
 # Sample .travis.yml for R projects from https://github.com/craigcitro/r-travis
 
-language: c
+language: r
 
-before_install:
-  - sudo apt-get install libv8-dev;
-  - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
-  - chmod 755 ./travis-tool.sh
-  - ./travis-tool.sh bootstrap
+apt_packages:
+  - libv8-dev;
 
-install:
-  - ./travis-tool.sh install_deps
-  - ./travis-tool.sh github_package jimhester/covr
-
-script: ./travis-tool.sh run_tests
+r_github_packages:
+  - jimhester/covr
 
 after_success:
   - Rscript -e 'library(covr);coveralls()'
 
-after_failure:
-  - ./travis-tool.sh dump_logs
-
-env:
-  - WARNINGS_ARE_ERRORS=1
+warnings_are_errors: true
 
 notifications:
   email:
