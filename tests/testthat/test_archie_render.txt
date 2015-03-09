@@ -1,0 +1,22 @@
+The [ArchieML](http://archieml.org/) syntax can be used to insert data into
+unstructured text.
+
+For instance, I could make a list like this
+
+[hello]
+
+* Item 1
+* Item 2
+
+[]
+
+Or just some key-value pairs
+
+max_value: 10
+
+min_value: 3
+
+Using the `archie_render()` function in "rchie", I can include this data
+in the text of an R Markdown document (like *this* document), and these
+variables will be available to all the code chunks.
+

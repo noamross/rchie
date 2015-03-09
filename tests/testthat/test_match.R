@@ -61,4 +61,13 @@ test_that("docx imported correctly",  {
       from_archie("ArchieMLParserTest.docx"),
       from_archie("ArchieMLParserTest_docx_plain.txt")
     )
-  })
+
+	})
+
+test_that("rmd imported correctly",  {
+    expect_identical(
+    	from_archie("test_archie_render.Rmd"),
+    	from_archie("test_archie_render.txt")
+    )
+	})
+

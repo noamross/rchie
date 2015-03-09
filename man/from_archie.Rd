@@ -17,6 +17,11 @@ pandoc, and enables markdown text in keys to be preserved.}
 This imports data from  New York Times' ArchieML format
 as an R object.  Text is parsed to JSON using archieml-js, then imported via jsonlite.
 }
+\details{
+Supported file formats (currently docx and Rmd) will automatically be converted
+to plain text for extracting.  Note that for Rmd, this means extracting
+only the text sections, not the code blocks or YAML header.
+}
 \examples{
 from_archie(txt = 'key: value')
 }

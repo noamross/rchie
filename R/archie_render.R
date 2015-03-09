@@ -20,8 +20,8 @@ archie_render = function(input, ...) {
 get_rmd_text = function(file) {
 	opts_chunk$set(code="", eval=FALSE, echo=FALSE) # A not super robust way to
 	tmp = knit(input=file, output = tempfile(), quiet=TRUE) # extract text from a .Rmd
-	text = 	paste(rmarkdown:::partition_yaml_front_matter(readLines(tmp))$body,
-		collapse="\n")
+	partitioned = rmarkdown:::partition_yaml_front_matter(readLines(tmp))
+	text = 	paste(partitioned$body, collapse="\n")
 	opts_chunk$restore()
   return(text)
 }
