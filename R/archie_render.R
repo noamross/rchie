@@ -11,13 +11,17 @@
 #' 							 output_dir=getwd())
 #' }
 archie_render = function(input, ...) {
-	opts_chunk$set(code="", eval=FALSE, echo=FALSE) # A not super robust way to
-	tmp = knit(input=input, output = tempfile(), quiet=TRUE) # extract text from a .Rmd
-	archie_data = from_archie(
-		paste(rmarkdown:::partition_yaml_front_matter(readLines(tmp))$body,
-					collapse="\n"))
+  archie_data = from_archie(get_rmd_text(input))
 	knit_env = list2env(archie_data)
-	opts_chunk$restore()
 	render(input, envir=knit_env)
 }
 
+#'@import knitr
+get_rmd_text = function(file) {
+	opts_chunk$set(code="", eval=FALSE, echo=FALSE) # A not super robust way to
+	tmp = knit(input=file, output = tempfile(), quiet=TRUE) # extract text from a .Rmd
+	text = 	paste(rmarkdown:::partition_yaml_front_matter(readLines(tmp))$body,
+		collapse="\n")
+	opts_chunk$restore()
+  return(text)
+}
