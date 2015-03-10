@@ -27,33 +27,33 @@ install_github('noamross/rchie')
 
 ```
 data1 = from_archie("
-	[arrayName]
-	
-	Jeremy spoke with her on Friday, follow-up scheduled for next week
-	name: Amanda
-	age: 26
-	
-	# Contact: 434-555-1234
-	name: Tessa
-	age: 30
-	
-	[]
-	")
-									
+  [arrayName]
+  
+  Jeremy spoke with her on Friday, follow-up scheduled for next week
+  name: Amanda
+  age: 26
+  
+  # Contact: 434-555-1234
+  name: Tessa
+  age: 30
+  
+  []
+  ")
+                  
 data2 = from_archie("
-	{colors}
-	red: #f00;
-	green: #0f0;
-	blue: #00f;
-	
-	{numbers}
-	one: 1
-	ten: 10
-	one-hundred: 100
-	{}
+  {colors}
+  red: #f00;
+  green: #0f0;
+  blue: #00f;
+  
+  {numbers}
+  one: 1
+  ten: 10
+  one-hundred: 100
+  {}
 
-	key:")
-	
+  key:")
+  
 str(data1)
 data1
 str(data)
