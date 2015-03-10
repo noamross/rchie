@@ -18,7 +18,7 @@ after_success:
   - Rscript -e 'library(covr);coveralls()'
 
 after_failure:
-  - ./travis-tool.sh dump_logs
+  - cat /home/travis/build/ropensci/rchie/rchie.Rcheck/00install.out
 
 warnings_are_errors: false
 
