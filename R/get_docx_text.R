@@ -1,5 +1,6 @@
 #' Get the (plain) text of a word doc as a character string
 #' @importFrom rmarkdown pandoc_convert
+#' @param file A *.docx file
 get_docx_text = function(file) {
   tmp = tempfile()
 	pandoc_convert(basename(file), from="docx", to="plain",

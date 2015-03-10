@@ -11,8 +11,7 @@
 #' @references \url{http://archieml.org/}
 #' @import V8
 #' @import jsonlite
-#' @import rmarkdown
-#' @import tools
+#' @importFrom tools file_ext
 #' @export
 from_archie <- function(txt) {
 	if (!is.character(txt)) {
@@ -24,7 +23,7 @@ from_archie <- function(txt) {
 			txt <- jsonlite:::raw_to_json(jsonlite:::download_raw(txt))
 		}
 		else if (file.exists(txt)) {
-			if(tools:::file_ext(txt) == "docx") {
+			if(file_ext(txt) == "docx") {
 				txt = get_docx_text(txt)
 			} else {
 				txt <- jsonlite:::raw_to_json(readBin(txt, raw(), file.info(txt)$size))

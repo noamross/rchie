@@ -6,7 +6,7 @@ Date: 2015-03-07
 Author: Noam Ross
 Maintainer: Noam Ross <noam.ross@gmail.com>
 Description: Parses the NYT's archieML specification, using their javascript parser (archieml-js) and V8
-License: MIT
+License: MIT + file LICENSE
 Imports: V8, jsonlite, rmarkdown, httr, stringi
 Suggests: testthat, covr
 SystemRequirements:	V8: libv8-dev (deb), v8-devel (rpm), rmarkdown: pandoc

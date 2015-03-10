@@ -6,6 +6,9 @@
 \usage{
 get_docx_text(file)
 }
+\arguments{
+\item{file}{A *.docx file}
+}
 \description{
 Get the (plain) text of a word doc as a character string
 }
