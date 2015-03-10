@@ -53,7 +53,7 @@ context('Other import formats match')
 
 test_that("docx imported correctly",  {
     expect_identical(
-      from_archie(system.file("ArchieMLParserTest.docx", package="rchie")),
-      from_archie(system.file("ArchieMLParserTest_docx_plain.txt", package="rchie"))
+      from_archie("ArchieMLParserTest.docx"),
+      from_archie("ArchieMLParserTest_docx_plain.txt")
     )
   })

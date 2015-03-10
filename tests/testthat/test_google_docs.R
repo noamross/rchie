@@ -9,6 +9,6 @@ test_that("google doc imported correctly",  {
 	download_file(d_token, meta_d, 'text/plain', tmp)
   expect_identical(
       from_archie(tmp),
-      from_archie(system.file("ArchieMLParserTestFromGoogle.txt", package="rchie"))
+      from_archie("ArchieMLParserTestFromGoogle.txt")
     )
   })
