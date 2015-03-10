@@ -3,7 +3,7 @@
 language: r
 
 before_install:
-  - openssl aes-256-cbc -K $encrypted_43e1d5f2ddca_key -iv $encrypted_43e1d5f2ddca_iv -in token_file.enc -out token_file -d
+  - openssl aes-256-cbc -K $encrypted_43e1d5f2ddca_key -iv $encrypted_43e1d5f2ddca_iv -in inst/token_file.enc -out inst/token_file -d
 
 apt_packages:
   - libv8-dev;
