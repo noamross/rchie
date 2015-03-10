@@ -3,14 +3,14 @@
 language: r
 
 apt_packages:
-  - libv8-dev;
+	- libv8-dev;
 
 r_github_packages:
-  - jimhester/covr
-  - noamross/RGoogleDrive
+	- jimhester/covr
+	- noamross/RGoogleDrive
 
 after_success:
-  - Rscript -e 'library(covr);coveralls()'
+	- Rscript -e 'library(covr);coveralls()'
 
 warnings_are_errors: true
 
@@ -18,3 +18,5 @@ notifications:
   email:
     on_success: change
     on_failure: change
+  slack:
+    secure: QWQaHUdO4IH8tWabYtOmX/9hag0k6757J4l3MraBsUYpxOYxRu4z40BexGa/hx/mkY12n0dXXTR5AlNQPC3P4crRrtS7vV9+koUi3wuWOyHN9oOqN2QyVG1wtPceXUnFPUZe1jGlo4NEmvG0kE8jLQqM9a9zTf2ashzJymI3XkI=
