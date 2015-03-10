@@ -33,6 +33,8 @@ from_archie <- function(txt) {
   if (length(txt) > 1) {
     txt <- paste(txt, collapse = "\n")
   }
+  txt = gsub("\n-   (?=\\w+\n)", "\n*   ", txt, perl=TRUE)
+  #Archie uses asterisks, not dashes, for lists
   ct = new_context()
   ct$source(system.file("archieml-js/archieml.js", package="rchie"))
   ct$assign("txt", txt)

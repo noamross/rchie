@@ -6,7 +6,6 @@ get_docx_text = function(file) {
   pandoc_convert(basename(file), from="docx", to="plain",
                  output=tmp, wd=dirname(file))
   txt = readChar(tmp, file.info(tmp)$size)
-  txt = gsub("\n-   (?=\\w+\n)", "\n*   ", txt, perl=TRUE)
-    #Archie uses asterisks, not dashes, for lists
+
   return(txt)
   }
