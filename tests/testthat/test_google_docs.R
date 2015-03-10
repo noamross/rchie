@@ -1,12 +1,14 @@
-# test_that("google doc imported correctly",  {
-# options(drive.app = Sys.getenv(DRIVE_APP),
-#         drive.secret = Sys.getenv(DRIVE_SECRET),
-#         drive.scope = 'https://www.googleapis.com/auth/drive.readonly')
-# }
-#
-#
-#     expect_identical(
-#       from_archie(get_google_doc_text("https://docs.google.com/document/d/1JjYD90DyoaBuRYNxa4_nqrHKkgZf1HrUj30i3rTWX1s/edit")),
-#       from_archie(system.file("ArchieMLParserTestFromGoogle.txt.txt", package="rchie"))
-#     )
-#   })
+context('Online Services')
+
+test_that("google doc imported correctly",  {
+  d_token = readRDS(system.file("token_file", package="rchie"))
+  library(driver, quietly=TRUE)
+  archie_test_id = '16WHsVRyCM6dHVHTvFYsTbNaIl1vavGPp8GU3OnUS7oE'
+	meta_d = file_metadata(d_token, archie_test_id)
+	tmp = tempfile()
+	download_file(d_token, meta_d, 'text/plain', tmp)
+  expect_identical(
+      from_archie(tmp),
+      from_archie(system.file("ArchieMLParserTestFromGoogle.txt", package="rchie"))
+    )
+  })
