@@ -4,3 +4,4 @@
 .DS_store
 *.Rproj
 .httr-oauth
+tests/testthat/token_file

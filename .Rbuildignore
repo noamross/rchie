@@ -2,3 +2,5 @@
 ^\.Rproj\.user$
 ^\.travis\.yml$
 ^\.httr-oauth$
+tests/testthat/token_file
+tests/testthat/token_file.enc
