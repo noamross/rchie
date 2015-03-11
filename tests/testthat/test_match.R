@@ -57,8 +57,6 @@ context('Other import formats match')
 test_that("docx imported correctly",  {
 
     skip_on_cran()
-
-    message(pandoc_convert("ArchieMLParserTest.docx", to='plain'))
     expect_identical(
       from_archie("ArchieMLParserTest.docx"),
       from_archie("ArchieMLParserTest_docx_plain.txt")
