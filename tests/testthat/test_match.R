@@ -3,7 +3,7 @@ context('ArchieML/JSON examples match')
 
 test_that("ArchieML/JSON examples match", {
 
-#  skip_on_cran()
+  skip_on_cran()
 
     expect_identical(
     from_archie('key: This is a value'),
