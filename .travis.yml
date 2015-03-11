@@ -29,8 +29,6 @@ env:
   - NOT_CRAN="true"
 
 notifications:
-  email:
-    on_success: change
-    on_failure: change
+  email: false
   slack:
     secure: QWQaHUdO4IH8tWabYtOmX/9hag0k6757J4l3MraBsUYpxOYxRu4z40BexGa/hx/mkY12n0dXXTR5AlNQPC3P4crRrtS7vV9+koUi3wuWOyHN9oOqN2QyVG1wtPceXUnFPUZe1jGlo4NEmvG0kE8jLQqM9a9zTf2ashzJymI3XkI=
