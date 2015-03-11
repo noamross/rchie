@@ -4,7 +4,7 @@
 get_docx_text = function(file) {
   tmp = tempfile()
   pandoc_convert(file, from="docx", to="plain",
-                 output=tmp)
+                 output=tmp, wd=normalizePath(dirname(file)))
   txt = readChar(tmp, file.info(tmp)$size)
 
   return(txt)
