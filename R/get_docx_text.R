@@ -3,8 +3,8 @@
 #' @param file A *.docx file
 get_docx_text = function(file) {
   tmp = tempfile()
-  pandoc_convert(basename(file), from="docx", to="plain",
-                 output=tmp, wd=dirname(file))
+  pandoc_convert(file, from="docx", to="plain",
+                 output=tmp)
   txt = readChar(tmp, file.info(tmp)$size)
 
   return(txt)
