@@ -2,7 +2,7 @@ context('Online Services')
 
 test_that("google doc imported correctly",  {
 
-  skip_on_cran()
+#  skip_on_cran()
 
   d_token = readRDS("token_file.rds")
   library(driver, quietly=TRUE)
