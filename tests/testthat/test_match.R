@@ -52,6 +52,8 @@ test_that("ArchieML/JSON examples match", {
 context('Other import formats match')
 
 test_that("docx imported correctly",  {
+
+    message(pandoc_convert("ArchieMLParserTest.docx", to='plain'))
     expect_identical(
       from_archie("ArchieMLParserTest.docx"),
       from_archie("ArchieMLParserTest_docx_plain.txt")
