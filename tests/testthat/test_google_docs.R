@@ -1,6 +1,9 @@
 context('Online Services')
 
 test_that("google doc imported correctly",  {
+
+  skip_on_cran()
+
   d_token = readRDS("token_file.rds")
   library(driver, quietly=TRUE)
   archie_test_id = '16WHsVRyCM6dHVHTvFYsTbNaIl1vavGPp8GU3OnUS7oE'

@@ -2,7 +2,10 @@ context('ArchieML/JSON examples match')
 
 
 test_that("ArchieML/JSON examples match", {
-  expect_identical(
+
+  skip_on_cran()
+
+    expect_identical(
     from_archie('key: This is a value'),
     jsonlite::fromJSON('{
                 "key": "This is a value"
@@ -52,6 +55,8 @@ test_that("ArchieML/JSON examples match", {
 context('Other import formats match')
 
 test_that("docx imported correctly",  {
+
+    skip_on_cran()
 
     message(pandoc_convert("ArchieMLParserTest.docx", to='plain'))
     expect_identical(
