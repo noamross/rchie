@@ -68,6 +68,14 @@ str(data)
 data2
 ```
 
+# Shiny Demo
+
+There's also a shiny demo in `inst/demo`.  To run it, clone this repo and run
+
+```
+shiny::runApp('inst/shinyapp')
+```
+
 See http://archieml.org/ for more examples of ArchieML
 
 [![ropensci_footer](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
