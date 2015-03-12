@@ -4,10 +4,21 @@
 \alias{from_archie}
 \title{Import ArchieML data from a string, file, or URL}
 \usage{
-from_archie(txt)
+from_archie(txt, markdown_extensions = TRUE)
 }
 \arguments{
 \item{txt}{a string, file, or URL in ArchieML format}
+
+\item{protect_markdown_links}{Should markdown links in input (\code{[text](url)})
+format) be protected by wrapping the brackets so that they are \code{[[text]](url)}
+format?  Otherwise the ArchieML parser skips over anything in single brackets
+as a comment.}
+
+\item{dashes_as_asterisks}{Should markdown bullets designated with \code{-} be
+converted to \code{*}?  Since ArchieML only uses asterisks to designate unnamed
+arrays, this allows markdown bullets to represent such arrays.}
+
+\item{unformat_keys}{Should bold/italic formatting be stripped from}
 }
 \description{
 This imports data from  New York Times' ArchieML format
