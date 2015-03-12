@@ -9,16 +9,9 @@ from_archie(txt, markdown_extensions = TRUE)
 \arguments{
 \item{txt}{a string, file, or URL in ArchieML format}
 
-\item{protect_markdown_links}{Should markdown links in input (\code{[text](url)})
-format) be protected by wrapping the brackets so that they are \code{[[text]](url)}
-format?  Otherwise the ArchieML parser skips over anything in single brackets
-as a comment.}
-
-\item{dashes_as_asterisks}{Should markdown bullets designated with \code{-} be
-converted to \code{*}?  Since ArchieML only uses asterisks to designate unnamed
-arrays, this allows markdown bullets to represent such arrays.}
-
-\item{unformat_keys}{Should bold/italic formatting be stripped from}
+\item{markdown_extensions}{Should text be pre-processed so as to make
+markdown input compatible? Helps if text is auto-generated markdown from
+pandoc, and enables markdown text in keys to be preserved.}
 }
 \description{
 This imports data from  New York Times' ArchieML format
