@@ -33,7 +33,6 @@ aml = from_archie(tmp2)
 library(gspreadr)
 library(magrittr)
 library(ggplot2)
-authorize()
 gsheet = register_ss(key = "1Fn9UcY_hSAV2odttdIHB4xh9D_nmgI5hyCbtWrAJqkw", visibility="public", verbose=FALSE)
 gdata = get_via_cf(gsheet) %>% reshape_cf
 ggplot(gdata, aes(x=Category, y=Value)) + geom_bar(stat="identity") +

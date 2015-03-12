@@ -6,8 +6,8 @@
 #
 
 library(shiny)
-
 shinyServer(function(input, output) {
+  library(rmarkdown)
 
 	output$doc = renderText({
 		input$value
