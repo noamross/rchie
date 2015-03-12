@@ -2,6 +2,7 @@ context('Online Services')
 
 test_that("google doc imported correctly",  {
 
+  check_travis_env()
   skip_on_cran()
 
   d_token = readRDS("token_file.rds")
