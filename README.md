@@ -23,6 +23,14 @@ library(devtools)
 install_github('noamross/rchie')
 ```
 
+For some of the demos, I also suggest installing these development packages:
+
+```
+install_github('noamross/driver[@markdown-convert]')
+install_github('jennybc/gspreadr')
+```
+
+
 ## Usage
 
 ```
