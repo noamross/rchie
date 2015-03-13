@@ -31,10 +31,10 @@ aml = from_archie(tmp2)
 
 ```{r plot, echo=TRUE, results='markup', fig.cap=aml$caption}
 library(gspreadr)
-library(magrittr)
+
 library(ggplot2)
 gsheet = register_ss(key = "1Fn9UcY_hSAV2odttdIHB4xh9D_nmgI5hyCbtWrAJqkw", visibility="public", verbose=FALSE)
-gdata = get_via_cf(gsheet) %>% reshape_cf
+gdata = reshape_cf(get_via_cf(gsheet))
 ggplot(gdata, aes(x=Category, y=Value)) + geom_bar(stat="identity") +
 	scale_x_discrete(labels = aml$catnames, name = aml$xaxis) + 
 	ylab(aml$yaxis)
