@@ -11,7 +11,7 @@ shinyServer(function(input, output) {
 
 	output$doc = renderText({
 		input$value
-		render('doc/archiedocdemo.Rmd', output_format="html_document")
-		readChar("doc/archiedocdemo.html", file.info("doc/archiedocdemo.html")$size)
+		render("archiedocdemo.Rmd", output_format="html_document")
+		readChar("archiedocdemo.html", file.info("archiedocdemo.html")$size)
 	})
 })
