@@ -30,13 +30,11 @@ aml = from_archie(tmp2)
 `r aml$charttext`
 
 ```{r plot, echo=TRUE, results='markup', fig.cap=aml$caption}
-library(gspreadr)
-
 library(ggplot2)
-gsheet = register_ss(key = "1Fn9UcY_hSAV2odttdIHB4xh9D_nmgI5hyCbtWrAJqkw", visibility="public", verbose=FALSE)
-gdata = reshape_cf(get_via_cf(gsheet))
+gdata = data.frame(Category=factor(aml$Category, levels = aml$Category), 
+									 Value=as.numeric(aml$Value))
 ggplot(gdata, aes(x=Category, y=Value)) + geom_bar(stat="identity") +
-	scale_x_discrete(labels = aml$catnames, name = aml$xaxis) + 
+	scale_x_discrete(name = aml$xaxis) + 
 	ylab(aml$yaxis)
 ```
 
