@@ -20,7 +20,7 @@ Note that, because it uses the V8 package, rchie has a system requirement of lib
 
 ```
 library(devtools)
-install_github('noamross/rchie')
+install_github('ropensci/rchie')
 ```
 
 For some of the demos, I also suggest installing these development packages:
