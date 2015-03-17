@@ -22,8 +22,8 @@
     equal(Object.keys(load('k&ey:value')).length, 0, 'symbols are not allowed in keys');
     equal(load('scope.key:value').scope.key, 'value', 'keys can be nested using dot-notation');
     equal(load('scope.key:value\nscope.otherkey:value').scope.key, 'value', "earlier keys within scopes aren't deleted when using dot-notation");
-    deepEqual(load('scope.level:value\nscope.level.level:value').scope.level.level, 'value', 'the value of key that used to be a parent object should be replaced with a string if necessary');
-    equal(load('scope.level.level:value\nscope.level:value').scope.level, 'value', 'the value of key that used to be a string object should be replaced with an object if necessary');
+    deepEqual(load('scope.level:value\nscope.level.level:value').scope.level.level, 'value', 'the value of key that used to be a string object should be replaced with an object if necessary');
+    equal(load('scope.level.level:value\nscope.level:value').scope.level, 'value', 'the value of key that used to be a parent object should be replaced with a string if necessary');
   });
 
   test('valid values', function() {
@@ -94,8 +94,15 @@
     equal(load('key:value\n\\[comment]\n:end').key, 'value', 'allows escaping [comments] at the beginning of lines');
     equal(load('key:value\n\\[[array]]\n:end').key, 'value\n[array]', 'allows escaping [[arrays]] at the beginning of lines');
 
+    equal(load('key:value\ntext\n[array]\nmore text\n:end').key, 'value', 'arrays within a multi-line value breaks up the value');
+    equal(load('key:value\ntext\n{scope}\nmore text\n:end').key, 'value', 'objects within a multi-line value breaks up the value');
+    equal(load('key:value\ntext\n* value\nmore text\n:end').key, 'value\ntext\n* value\nmore text', 'bullets within a multi-line value do not break up the value');
+    equal(load('key:value\ntext\n:skip\n:endskip\nmore text\n:end').key, 'value\ntext\nmore text', 'skips within a multi-line value do not break up the value');
+
     equal(load('key:value\n\\\\:end\n:end').key, 'value\n\\:end', 'allows escaping initial backslash at the beginning of lines');
     equal(load('key:value\n\\\\\\:end\n:end').key, 'value\n\\\\:end', 'escapes only one initial backslash');
+
+    equal(load('key:value\n\\:end\n\\:ignore\n\\:endskip\n\\:skip\n:end').key, 'value\n:end\n:ignore\n:endskip\n:skip', 'allows escaping multiple lines in a value');
 
     equal(load('key:value\nLorem key2\\:value\n:end').key, 'value\nLorem key2\\:value', "doesn't escape colons after beginning of lines");
   });
@@ -156,8 +163,16 @@
     equal(load('[array]\n*Value1\n\\key:value\n:end').array[0], "Value1\nkey:value", 'allows escaping key lines with a leading backslash');
     equal(load('[array]\n*Value1\nword key\\:value\n:end').array[0], "Value1\nword key\\:value", 'does not allow escaping of colons not at the beginning of lines');
 
+    equal(load('[array]\n* value\n[array]\nmore text\n:end').array[0], 'value', 'arrays within a multi-line value breaks up the value');
+    equal(load('[array]\n* value\n{scope}\nmore text\n:end').array[0], 'value', 'objects within a multi-line value breaks up the value');
+    equal(load('[array]\n* value\nkey: value\nmore text\n:end').array[0], 'value\nkey: value\nmore text', 'key/values within a multi-line value do not break up the value');
+    equal(load('[array]\n* value\n* value\nmore text\n:end').array[0], 'value', 'bullets within a multi-line value break up the value');
+    equal(load('[array]\n* value\n:skip\n:endskip\nmore text\n:end').array[0], 'value\nmore text', 'skips within a multi-line value do not break up the value');
+
     equal(load('[array]\n*Value\n[]\n[array]\n*Value').array.length, 2, 'arrays that are reopened add to existing array');
     deepEqual(load('[array]\n*Value\n[]\n[array]\nkey:value').array, ["Value"], 'simple arrays that are reopened remain simple');
+
+    equal(load('a.b:complex value\n[a.b]\n*simple value').a.b[0], 'simple value', 'simple ararys overwrite existing keys');
   });
 
   test('complex arrays', function() {
@@ -170,8 +185,16 @@
     equal(load('[array]\nkey:value\nscope.key:value').array.length, 1, 'duplicate keys must match on dot-notation scope');
     equal(load('[array]\nscope.key:value\nkey:value\notherscope.key:value').array.length, 1, 'duplicate keys must match on dot-notation scope');
 
+    equal(load('[array]\nkey:value\n[array]\nmore text\n:end').array[0].key, 'value', 'arrays within a multi-line value breaks up the value');
+    equal(load('[array]\nkey:value\n{scope}\nmore text\n:end').array[0].key, 'value', 'objects within a multi-line value breaks up the value');
+    equal(load('[array]\nkey:value\nother: value\nmore text\n:end').array[0].key, 'value', 'key/values within a multi-line value break up the value');
+    equal(load('[array]\nkey:value\n* value\nmore text\n:end').array[0].key, 'value\n* value\nmore text', 'bullets within a multi-line value do not break up the value');
+    equal(load('[array]\nkey:value\n:skip\n:endskip\nmore text\n:end').array[0].key, 'value\nmore text', 'skips within a multi-line value do not break up the value');
+
     equal(load('[array]\nkey:value\n[]\n[array]\nkey:value').array.length, 2, 'arrays that are reopened add to existing array');
     deepEqual(load('[array]\nkey:value\n[]\n[array]\n*Value').array, [{"key": "value"}], 'complex arrays that are reopened remain complex');
+
+    equal(load('a.b:complex value\n[a.b]\nkey:value').a.b[0].key, 'value', 'complex ararys overwrite existing keys');
   });
 
   test('inline comments', function() {
