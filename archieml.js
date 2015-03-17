@@ -10,10 +10,10 @@
 // which match patterns for different types of commands in AML.
 function load(input) {
   var nextLine = new RegExp('.*((\r|\n)+)');
-  var startKey = new RegExp('^\\s*([A-Za-z0-9-_\.]+)[ \t\r]*:[ \t\r]*(.*)');
-  var commandKey = new RegExp('^\\s*:[ \t\r]*(endskip|ignore|skip|end)', 'i');
-  var arrayElement = new RegExp('^\\s*\\*[ \t\r]*(.*)');
-  var scopePattern = new RegExp('^\\s*(\\[|\\{)[ \t\r]*([A-Za-z0-9-_\.]*)[ \t\r]*(?:\\]|\\})[ \t\r]*.*?(\n|\r|$)');
+  var startKey = new RegExp('^\\s*([A-Za-z0-9-_\.]+)[ \t\r]*:[ \t\r]*(.*(?:\n|\r|$))');
+  var commandKey = new RegExp('^\\s*:[ \t\r]*(endskip|ignore|skip|end).*?(\n|\r|$)', 'i');
+  var arrayElement = new RegExp('^\\s*\\*[ \t\r]*(.*(?:\n|\r|$))');
+  var scopePattern = new RegExp('^\\s*(\\[|\\{)[ \t\r]*([A-Za-z0-9-_\.]*)[ \t\r]*(?:\\]|\\}).*?(\n|\r|$)');
 
   var data = {},
       scope = data,
@@ -129,8 +129,6 @@ function load(input) {
         isSkipping = false;
         break;
     }
-
-    flushBuffer();
   }
 
   function parseScope(scopeType, scopeKey) {
@@ -160,6 +158,7 @@ function load(input) {
 
       if (scopeType == '[') {
         array = keyScope[keyBits[keyBits.length - 1]] = keyScope[keyBits[keyBits.length - 1]] || [];
+        if (typeof array == 'string') array = keyScope[keyBits[keyBits.length - 1]] = [];
         // If we're reopening this array, set the arrayType
         if (array.length > 0) arrayType = typeof array[0] === 'string' ? 'simple' : 'complex';
 
@@ -177,7 +176,7 @@ function load(input) {
       // If we're appending to a multi-line string, escape special punctuation
       // by using a backslash at the beginning of any line.
       // Note we do not do this processing for the first line of any value.
-      value = value.replace(new RegExp('^(\\s*)\\\\'), "$1");
+      value = value.replace(new RegExp('^(\\s*)\\\\', 'gm'), "$1");
     }
 
     return value;
@@ -225,6 +224,7 @@ function load(input) {
     array = null;
     arrayType = null;
     arrayFirstKey = null;
+    bufferKey = null;
   }
 
   flushBuffer();
