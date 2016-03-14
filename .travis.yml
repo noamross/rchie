@@ -1,34 +1,23 @@
-# Sample .travis.yml for R projects from https://github.com/craigcitro/r-travis
+language: r
+r:
+  - release
+  - devel
+sudo: false
+cache: packages
 
-language: c
+addons:
+  apt:
+    packages:
+      - libv8-dev
 
-before_install:
-  - openssl aes-256-cbc -K $encrypted_43e1d5f2ddca_key -iv $encrypted_43e1d5f2ddca_iv -in tests/testthat/token_file.enc -out tests/testthat/token_file.rds -d
-  - sudo apt-get install libv8-dev;
-  - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
-  - chmod 755 ./travis-tool.sh
-  - ./travis-tool.sh bootstrap
+r_github_packages:
+- jimhester/covr
 
-install:
-  - ./travis-tool.sh install_deps
-  - ./travis-tool.sh github_package jimhester/covr
-  - ./travis-tool.sh github_package Ironholds/driver
-  - ./travis-tool.sh github_package rstudio/rmarkdown
-
-script: ./travis-tool.sh run_tests
 
 after_success:
-  -  Rscript -e 'library(covr);coveralls()'
-  - ./travis-tool.sh dump_logs
-
-after_failure:
-  -  Rscript -e 'library(covr);coveralls()'
-  - ./travis-tool.sh dump_logs
-
-env:
-  - WARNINGS_ARE_ERRORS=1 NOT_CRAN="true"
+- Rscript -e 'covr::codecov()'
 
 notifications:
-  email: false
-  slack:
-    secure: QWQaHUdO4IH8tWabYtOmX/9hag0k6757J4l3MraBsUYpxOYxRu4z40BexGa/hx/mkY12n0dXXTR5AlNQPC3P4crRrtS7vV9+koUi3wuWOyHN9oOqN2QyVG1wtPceXUnFPUZe1jGlo4NEmvG0kE8jLQqM9a9zTf2ashzJymI3XkI=
+  email:
+    on_success: change
+    on_failure: change
