@@ -20,7 +20,7 @@
 #' @import jsonlite
 #' @importFrom tools file_ext
 #' @export
-from_archie <- function(txt, markdown_extensions = TRUE) {
+from_archie <- function(txt, markdown_extensions = FALSE) {
 	if (!is.character(txt)) {
 		stop("Argument 'txt' must be an ArchieML string, URL or path to existing file.")
 	}
