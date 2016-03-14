@@ -12,6 +12,7 @@
 #' @param markdown_extensions Should text be pre-processed so as to make
 #' markdown input compatible? Helps if text is auto-generated markdown from
 #' pandoc, and enables markdown text in keys to be preserved.
+#' @param ... arguments to be passed to \link[jsonline]{fromJSON} to
 #'
 #' @examples
 #'    from_archie(txt = 'key: value')
@@ -20,7 +21,7 @@
 #' @import jsonlite
 #' @importFrom tools file_ext
 #' @export
-from_archie <- function(txt, markdown_extensions = FALSE) {
+from_archie <- function(txt, markdown_extensions = FALSE, ...) {
 	if (!is.character(txt)) {
 		stop("Argument 'txt' must be an ArchieML string, URL or path to existing file.")
 	}
@@ -55,9 +56,10 @@ from_archie <- function(txt, markdown_extensions = FALSE) {
     #dash bullets s as asterisks
   	txt = gsub("\n-   (?=\\w+\n)", "\n*   ", txt, perl=TRUE)
   }
+
 	ct = new_context()
   ct$source(system.file("archieml-js/archieml.js", package="rchie"))
   ct$assign("txt", txt)
-  ct$eval("var parsed = archieml.load(txt);")
-  return(ct$get("parsed"))
+  ct$eval("var parsed = JSON.stringify(archieml.load(txt));")
+  return(fromJSON(ct$get("parsed"), ...))
 }
