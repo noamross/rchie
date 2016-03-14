@@ -2,12 +2,18 @@ Package: rchie
 Type: Package
 Title: A Parser for ArchieML
 Version: 0.1
-Date: 2015-03-07
+Date: 2016-03-14
 Author: Noam Ross
 Maintainer: Noam Ross <noam.ross@gmail.com>
-Description: Parses the NYT's archieML specification, using their javascript parser (archieml-js) and V8
+Description: Parses the NYT's archieML specification, using their javascript
+    parser (archieml-js) and V8
 License: MIT + file LICENSE
-Imports: V8, jsonlite, rmarkdown, httr, stringi, tools
-Suggests: testthat, covr, driver, gspreadr
-SystemRequirements:  V8: libv8-dev (deb), v8-devel (rpm), rmarkdown: pandoc
+Imports:
+    V8,
+    jsonlite
+Suggests:
+    testthat,
+    covr
+SystemRequirements: V8: libv8-dev (deb), v8-devel (rpm)
 LazyData: TRUE
+RoxygenNote: 5.0.1
