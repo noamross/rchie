@@ -4,14 +4,10 @@
 \alias{from_archie}
 \title{Import ArchieML data from a string, file, or URL}
 \usage{
-from_archie(txt, markdown_extensions = FALSE, ...)
+from_archie(txt, ...)
 }
 \arguments{
 \item{txt}{a string, file, or URL in ArchieML format}
-
-\item{markdown_extensions}{Should text be pre-processed so as to make
-markdown input compatible? Helps if text is auto-generated markdown from
-pandoc, and enables markdown text in keys to be preserved.}
 
 \item{...}{arguments to be passed to \link[jsonline]{fromJSON} to}
 }

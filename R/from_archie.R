@@ -8,10 +8,6 @@
 #' only the text sections, not the code blocks or YAML header.
 #'
 #' @param txt a string, file, or URL in ArchieML format
-#'
-#' @param markdown_extensions Should text be pre-processed so as to make
-#' markdown input compatible? Helps if text is auto-generated markdown from
-#' pandoc, and enables markdown text in keys to be preserved.
 #' @param ... arguments to be passed to \link[jsonline]{fromJSON} to
 #'
 #' @examples
@@ -21,7 +17,7 @@
 #' @import jsonlite
 #' @importFrom tools file_ext
 #' @export
-from_archie <- function(txt, markdown_extensions = FALSE, ...) {
+from_archie <- function(txt, ...) {
 	if (!is.character(txt)) {
 		stop("Argument 'txt' must be an ArchieML string, URL or path to existing file.")
 	}
@@ -43,19 +39,6 @@ from_archie <- function(txt, markdown_extensions = FALSE, ...) {
 	if (length(txt) > 1) {
 		txt <- paste(txt, collapse = "\n")
 	}
-
-  if(markdown_extensions) {
-
-    #protect links by double-wrapping brackets
-    txt = gsub("(\\[[^\\]]+\\])(?=\\([^\\)]+\\))","[\\1]", txt, perl=TRUE)
-    #move unescaped asterisks before a key to after
-    #stri_count_regex(txt, "(?<=(^|\\n)[\\h*]{0,100})(?<!\\\\)\\*(?=[^\\n:]*:)")
-
-    #unescape asterisks at the start of a line.
-    gsub("(^|\\n)\\h*\\\\\\*(?=\\s*\\w+)", "\n*", txt, perl=TRUE)
-    #dash bullets s as asterisks
-  	txt = gsub("\n-   (?=\\w+\n)", "\n*   ", txt, perl=TRUE)
-  }
 
 	ct = new_context()
   ct$source(system.file("archieml-js/archieml.js", package="rchie"))
