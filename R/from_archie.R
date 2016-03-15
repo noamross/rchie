@@ -3,46 +3,35 @@
 #' This imports data from  New York Times' ArchieML format
 #' as an R object.  Text is parsed to JSON using archieml-js, then imported via jsonlite.
 #'
-#' Supported file formats (currently docx and Rmd) will automatically be converted
-#' to plain text for extracting.  Note that for Rmd, this means extracting
-#' only the text sections, not the code blocks or YAML header.
-#'
-#' @param txt a string, file, or URL in ArchieML format
-#' @param ... arguments to be passed to \link[jsonline]{fromJSON} to
-#'
+#' @param aml a string, file, or URL in ArchieML format
+#' @param ... arguments to be passed to \link[jsonlite]{fromJSON} to determine
+#'   how JSON is parsed
 #' @examples
-#'    from_archie(txt = 'key: value')
+#'    from_archie(aml = 'key: value')
 #' @references \url{http://archieml.org/}
-#' @import V8
-#' @import jsonlite
-#' @importFrom tools file_ext
+#' @import V8 jsonlite
 #' @export
-from_archie <- function(txt, ...) {
-	if (!is.character(txt)) {
-		stop("Argument 'txt' must be an ArchieML string, URL or path to existing file.")
-	}
-	if (length(txt) == 1 && nchar(txt, type = "bytes") < 1000) {
-		if (grepl("^https?://", txt, useBytes = TRUE)) {
-			jsonlite:::loadpkg("httr")
-			txt <- jsonlite:::raw_to_json(jsonlite:::download_raw(txt))
-		}
-		else if (file.exists(txt)) {
-			if(tools:::file_ext(txt) == "docx") {
-				txt = get_docx_text(txt)
-			} else if(tools:::file_ext(txt) %in% c("rmd", "Rmd")) {
-				txt = get_rmd_text(txt)
-			} else {
-				txt <- jsonlite:::raw_to_json(readBin(txt, raw(), file.info(txt)$size))
-			}
-		}
-	}
-	if (length(txt) > 1) {
-		txt <- paste(txt, collapse = "\n")
-	}
+from_archie <- function(aml, ...) {
+
+  aml <- read(aml)
 
 	ct = new_context()
   ct$source(system.file("archieml-js/archieml.js", package="rchie"))
-  ct$assign("txt", txt)
-  ct$eval("var parsed = JSON.stringify(archieml.load(txt));")
+  ct$assign("aml", aml)
+  ct$eval("var parsed = JSON.stringify(archieml.load(aml));")
   return(fromJSON(ct$get("parsed"), ...))
+}
+
+#' @import httr
+read <- function(x) {
+  if (file.exists(x)) {
+    readChar(x, file.info(x)$size)
+  } else if (!is.null(httr::parse_url(x)$scheme) &&
+             identical(try(httr::status_code(httr::HEAD(x)), silent=TRUE), 200L)) {
+    res <- httr::GET(x)
+    httr::stop_for_status(res)
+    httr::content(res, "text")
+  } else {
+    x
+  }
 }

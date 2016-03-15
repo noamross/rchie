@@ -4,24 +4,20 @@
 \alias{from_archie}
 \title{Import ArchieML data from a string, file, or URL}
 \usage{
-from_archie(txt, ...)
+from_archie(aml, ...)
 }
 \arguments{
-\item{txt}{a string, file, or URL in ArchieML format}
+\item{aml}{a string, file, or URL in ArchieML format}
 
-\item{...}{arguments to be passed to \link[jsonline]{fromJSON} to}
+\item{...}{arguments to be passed to \link[jsonlite]{fromJSON} to determine
+how JSON is parsed}
 }
 \description{
 This imports data from  New York Times' ArchieML format
 as an R object.  Text is parsed to JSON using archieml-js, then imported via jsonlite.
 }
-\details{
-Supported file formats (currently docx and Rmd) will automatically be converted
-to plain text for extracting.  Note that for Rmd, this means extracting
-only the text sections, not the code blocks or YAML header.
-}
 \examples{
-   from_archie(txt = 'key: value')
+   from_archie(aml = 'key: value')
 }
 \references{
 \url{http://archieml.org/}
