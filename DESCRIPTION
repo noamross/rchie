@@ -5,12 +5,13 @@ Version: 0.1
 Date: 2016-03-14
 Author: Noam Ross
 Maintainer: Noam Ross <noam.ross@gmail.com>
-Description: Parses the NYT's archieML specification, using their javascript
-    parser (archieml-js) and V8
+Description: This packages parses the New York Times'ArchieML format,
+    using their javascript parser (archieml-js) and V8.
 License: MIT + file LICENSE
 Imports:
     V8,
-    jsonlite
+    jsonlite,
+    httr
 Suggests:
     testthat,
     covr

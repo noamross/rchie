@@ -2,5 +2,5 @@
 
 export(from_archie)
 import(V8)
+import(httr)
 import(jsonlite)
-importFrom(tools,file_ext)
