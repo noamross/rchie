@@ -13,7 +13,8 @@ Imports:
     httr
 Suggests:
     testthat,
-    covr
+    covr,
+    jsonlite
 SystemRequirements: V8: libv8-dev (deb), v8-devel (rpm)
 LazyData: TRUE
 RoxygenNote: 5.0.1

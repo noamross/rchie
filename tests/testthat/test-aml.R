@@ -1,4 +1,5 @@
 context("archiml-js test suite")
+library(jsonlite)
 
 for(file in list.files(pattern = "\\.aml")) {
   imported <- from_archie(file)
@@ -9,7 +10,7 @@ for(file in list.files(pattern = "\\.aml")) {
 
 for(file in list.files(pattern = "\\.aml")) {
   imported <- from_archie(file, simplifyVector = FALSE)
-  test_that(paste0(imported$test, "(with fromJSON arguments) (", basename(file), ")"), {
+  test_that(paste0(imported$test, " (with fromJSON arguments) (", basename(file), ")"), {
     expect_identical(imported[-c(1, 2)], fromJSON(imported$result, simplifyVector=FALSE))
   })
 }

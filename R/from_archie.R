@@ -16,10 +16,10 @@ from_archie <- function(aml, ...) {
 
   aml <- read(aml)
 
-  V8::ct <- new_context()
-  V8::ct$source(system.file("archieml-js/archieml.js", package="rchie"))
-  V8::ct$assign("aml", aml)
-  V8::ct$eval("var parsed = archieml.load(aml);")
+  ct <- new_context()
+  ct$source(system.file("archieml-js/archieml.js", package="rchie"))
+  ct$assign("aml", aml)
+  ct$eval("var parsed = archieml.load(aml);")
   return(ct$get("parsed", ...))
 }
 
