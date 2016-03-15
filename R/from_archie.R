@@ -8,6 +8,7 @@
 #'   how JSON is parsed
 #' @examples
 #'    from_archie(aml = 'key: value')
+#'    from_archie('http://archieml.org/test/1.0/arrays.1.aml')
 #' @references \url{http://archieml.org/}
 #' @import V8 jsonlite
 #' @export
