@@ -1,7 +1,7 @@
 Package: rchie
 Type: Package
 Title: A Parser for ArchieML
-Version: 0.1
+Version: 0.2
 Date: 2016-03-14
 Author: Noam Ross
 Maintainer: Noam Ross <noam.ross@gmail.com>
