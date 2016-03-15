@@ -3,4 +3,3 @@
 export(from_archie)
 import(V8)
 import(httr)
-import(jsonlite)

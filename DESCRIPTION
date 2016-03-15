@@ -10,7 +10,6 @@ Description: This packages parses the New York Times'ArchieML format,
 License: MIT + file LICENSE
 Imports:
     V8,
-    jsonlite,
     httr
 Suggests:
     testthat,

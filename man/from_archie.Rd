@@ -13,8 +13,8 @@ from_archie(aml, ...)
 how JSON is parsed}
 }
 \description{
-This imports data from  New York Times' ArchieML format
-as an R object.  Text is parsed to JSON using archieml-js, then imported via jsonlite.
+This imports data from  New York Times' ArchieML formatas an R object.  Text
+is parsed to JSON using archieml-js, then imported via jsonlite.
 }
 \examples{
    from_archie(aml = 'key: value')
