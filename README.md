@@ -1,5 +1,5 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Build Status](https://travis-ci.org/ropensci/rchie.svg?branch=master)](https://travis-ci.org/ropensci/rchie) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/reopnsci/rchie?branch=master&svg=true)](https://ci.appveyor.com/project/ropensci/rchie) [![Coverage Status](https://coveralls.io/repos/ropensci/rchie/badge.svg)](https://coveralls.io/r/ropensci/rchie)
+[![Build Status](https://travis-ci.org/ropensci/rchie.svg?branch=master)](https://travis-ci.org/ropensci/rchie) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropensci/rchie?branch=master&svg=true)](https://ci.appveyor.com/project/noamross/rchie) [![Coverage Status](https://coveralls.io/repos/ropensci/rchie/badge.svg)](https://coveralls.io/r/ropensci/rchie)
 
 An R parser for ArchieML
 ========================
