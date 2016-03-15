@@ -11,11 +11,11 @@ addons:
       - libv8-dev
 
 r_github_packages:
-- jimhester/covr
+#- jimhester/covr
 - jimhester/lintr
 
 after_success:
-- Rscript -e 'lintr::lint_package()'
+#- Rscript -e 'lintr::lint_package()'
 - Rscript -e 'covr::codecov()'
 
 
