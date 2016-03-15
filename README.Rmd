@@ -39,6 +39,8 @@ install_github('ropensci/rchie')
 
 ## Usage
 
+`from_archie` can read ArchieML from a string, file, or URL:
+
 ```{r}
 library(rchie)
 data1 = "
@@ -56,23 +58,7 @@ data1 = "
   "
 
 from_archie(data1)          
-
-data2 = "
-  {colors}
-  red: #f00;
-  green: #0f0;
-  blue: #00f;
-  
-  {numbers}
-  one: 1
-  ten: 10
-  one-hundred: 100
-  {}
-
-  key:"
-  
-
-from_archie(data2)
+from_archie('http://archieml.org/test/1.0/arrays.1.aml')
 ```
 
 Note that you can pass arguments through `from_archie` to `jsonlite::fromJSON` to

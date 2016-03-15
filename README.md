@@ -21,6 +21,8 @@ Note that, because it uses the V8 package, rchie has a system requirement of lib
 Usage
 -----
 
+`from_archie` can read ArchieML from a string, file, or URL:
+
 ``` r
 library(rchie)
 data1 = "
@@ -42,46 +44,16 @@ from_archie(data1)
 #>     name age
 #> 1 Amanda  26
 #> 2  Tessa  30
-
-data2 = "
-  {colors}
-  red: #f00;
-  green: #0f0;
-  blue: #00f;
-  
-  {numbers}
-  one: 1
-  ten: 10
-  one-hundred: 100
-  {}
-
-  key:"
-  
-
-from_archie(data2)
-#> $colors
-#> $colors$red
-#> [1] "#f00;"
+from_archie('http://archieml.org/test/1.0/arrays.1.aml')
+#> No encoding supplied: defaulting to UTF-8.
+#> $test
+#> [1] "[array] creates an empty array at array"
 #> 
-#> $colors$green
-#> [1] "#0f0;"
+#> $result
+#> [1] "{\"array\": []}"
 #> 
-#> $colors$blue
-#> [1] "#00f;"
-#> 
-#> $colors$key
-#> [1] ""
-#> 
-#> 
-#> $numbers
-#> $numbers$one
-#> [1] "1"
-#> 
-#> $numbers$ten
-#> [1] "10"
-#> 
-#> $numbers$`one-hundred`
-#> [1] "100"
+#> $array
+#> list()
 ```
 
 Note that you can pass arguments through `from_archie` to `jsonlite::fromJSON` to determine how JSON is converted to R objects:
