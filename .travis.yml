@@ -12,10 +12,13 @@ addons:
 
 r_github_packages:
 - jimhester/covr
-
+- jimhester/lintr
 
 after_success:
+- Rscript -e 'lintr::lint_package()'
 - Rscript -e 'covr::codecov()'
+
+
 
 notifications:
   email:

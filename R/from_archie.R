@@ -1,7 +1,7 @@
 #' Import ArchieML data from a string, file, or URL
 #'
-#' This imports data from  New York Times' ArchieML format
-#' as an R object.  Text is parsed to JSON using archieml-js, then imported via jsonlite.
+#' This imports data from  New York Times' ArchieML formatas an R object.  Text
+#' is parsed to JSON using archieml-js, then imported via jsonlite.
 #'
 #' @param aml a string, file, or URL in ArchieML format
 #' @param ... arguments to be passed to \link[jsonlite]{fromJSON} to determine
@@ -16,7 +16,7 @@ from_archie <- function(aml, ...) {
 
   aml <- read(aml)
 
-	ct = new_context()
+  ct <- new_context()
   ct$source(system.file("archieml-js/archieml.js", package="rchie"))
   ct$assign("aml", aml)
   ct$eval("var parsed = JSON.stringify(archieml.load(aml));")
