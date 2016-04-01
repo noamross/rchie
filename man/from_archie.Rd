@@ -22,7 +22,7 @@ is parsed to JSON using archieml-js, then imported via jsonlite.
 
    \dontshow{
 
-   #library(testthat)
+   library(testthat)
    library(jsonlite)
    context("archiml-js test suite")
 
