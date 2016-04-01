@@ -1,14 +1,19 @@
 Running tests from examples:
 
-  -   Tests can be put in roxygen @examples with \dontrun{} and \dontshow{}
-  -   `devtools::run_examples(show=FALSE, run=FALSE)` will run tests,
-      can be put in a single test file in test directory
-      -   However, this fails on R CMD CHECK because you can't redocument
-          package in the midst of R CMD CHECK
-      -   Instead, use `testthat::test_examples('../../man')`.  However,
-          this does not have ability to run `\dontrun{}` or `\dontshow{}`.
-          Requires a small PR to testhat to fix.
+  -   Tests can be put in roxygen @examples with \dontshow{} if desired
+  -   Tests should load the **testhat** library
+  -   In the tests directory, include a file with the following:
+  
+          if (identical(Sys.getenv("NOT_CRAN"), "true")) {
+            testthat::test_examples('../../man')
+          }
+
+      -   This runs the examples with **testthat** reporting when running
+          interactively, but does not under R CMD check, as they then run
+          when R CMD check runs examples.
+          
+  -   Other tests can be put in other files.
   -   Challenge: Putting tests in Roxygen deprives you of syntax highlighting,
-      tab completion, etc., 
+      tab completion, etc., perhaps RStudio could detect code in Roxygen comments
+      to make this easier
   -   A @tests roclet could generate tests and put them in the test directory
-  -   

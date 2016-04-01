@@ -20,9 +20,9 @@ is parsed to JSON using archieml-js, then imported via jsonlite.
    from_archie(aml = 'key: value')
    from_archie('http://archieml.org/test/1.0/arrays.1.aml')
 
-   \dontshow{\dontrun{
+   \dontshow{
 
-   library(testthat)
+   #library(testthat)
    library(jsonlite)
    context("archiml-js test suite")
 
@@ -55,7 +55,7 @@ is parsed to JSON using archieml-js, then imported via jsonlite.
      expect_identical(imported, fromJSON("{\\"key\\":\\"value\\"}"))
    })
 
-   }}
+   }
 }
 \references{
 \url{http://archieml.org/}
