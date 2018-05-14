@@ -1,4 +1,5 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+[![Project Status: Suspended – Initial development has started, but there has not yet been a stable, usable release; work has been stopped for the time being but the author(s) intend on resuming work.](http://www.repostatus.org/badges/latest/suspended.svg)](http://www.repostatus.org/#suspended)
 [![Build Status](https://travis-ci.org/ropensci/rchie.svg?branch=master)](https://travis-ci.org/ropensci/rchie) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropensci/rchie?branch=master&svg=true)](https://ci.appveyor.com/project/noamross/rchie) [![codecov.io](https://codecov.io/github/ropensci/rchie/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rchie?branch=master)
 
 An R parser for ArchieML
