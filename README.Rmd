@@ -1,7 +1,6 @@
 ---
 output:
-  md_document:
-    variant: markdown_github
+  github_document
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -13,9 +12,10 @@ knitr::opts_chunk$set(
   fig.path = "README-"
 )
 ```
-[![Build Status](https://travis-ci.org/ropensci/rchie.svg?branch=master)](https://travis-ci.org/ropensci/rchie)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropensci/rchie?branch=master&svg=true)](https://ci.appveyor.com/project/noamross/rchie)
-[![codecov.io](https://codecov.io/github/ropensci/rchie/coverage.svg?branch=master)](https://codecov.io/github/ropensci/rchie?branch=master)
+[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![Build Status](https://travis-ci.org/noamross/rchie.svg?branch=master)](https://travis-ci.org/noamross/rchie)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/noamross/rchie?branch=master&svg=true)](https://ci.appveyor.com/project/noamross/rchie)
+[![codecov.io](https://codecov.io/github/noamross/rchie/coverage.svg?branch=master)](https://codecov.io/github/noamross/rchie?branch=master)
 
 
 # An R parser for ArchieML
@@ -35,7 +35,7 @@ Note that, because it uses the V8 package, rchie has a system requirement of lib
 
 ```
 library(devtools)
-install_github('ropensci/rchie')
+install_github('noamross/rchie')
 ```
 
 ## Usage
@@ -44,7 +44,7 @@ install_github('ropensci/rchie')
 
 ```{r}
 library(rchie)
-data1 = "
+data1 <- "
   [arrayName]
   
   Jeremy spoke with her on Friday, follow-up scheduled for next week
@@ -58,18 +58,17 @@ data1 = "
   []
   "
 
-from_aml(data1)          
-from_aml('http://archieml.org/test/1.0/arrays.1.aml')
+from_aml(data1)
+from_aml("http://archieml.org/test/1.0/arrays.1.aml")
 ```
 
 Note that you can pass arguments through `from_aml` to `jsonlite::fromJSON` to
 determine how JSON is converted to R objects:
 
 ```{r}
-from_aml(data1, simplifyVector=FALSE)
+from_aml(data1, simplifyVector = FALSE)
 ```
 
 See http://archieml.org/ for more examples of ArchieML
 
-[![ropensci_footer](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
 
