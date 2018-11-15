@@ -1,5 +1,5 @@
 test: subarrays can be closed to return to the parent level
-result: {"array": [{"subarray": [{"subkey": "value"}], "parentkey": "value"}]}
+result: {"array": [{"parentkey": "value", "subarray": [{"subkey": "value"}]}]}
 
 [array]
 [.subarray]
