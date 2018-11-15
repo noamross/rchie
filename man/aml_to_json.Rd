@@ -11,7 +11,8 @@ aml_to_json(aml, prettify = FALSE, indent = 4)
 
 \item{prettify}{prettyify JSON?}
 
-\item{indent}{if prettifying, what indent level? Passed to \link[jsonlite]{prettify}}
+\item{indent}{if prettifying, what indent level? Passed to
+\link[jsonlite]{prettify}}
 }
 \description{
 Convert AML to JSON

@@ -5,11 +5,12 @@
 \alias{rchie-package}
 \title{Import ArchieML Data}
 \description{
-Parses ArchieML data (\url{http:://archieml.org}) using the archieml-js library
+Parses ArchieML data (\url{http:://archieml.org}) using the archieml-js
+library
 }
 \details{
-\tabular{ll}{ Package: \tab rchie\cr Type: \tab Package\cr Version:
-\tab 0.1\cr Date: \tab 2015-03-07\cr }
+\tabular{ll}{ Package: \tab rchie\cr Type: \tab Package\cr Version: \tab
+0.1\cr Date: \tab 2015-03-07\cr }
 }
 \references{
 \url{http://archieml.org/}

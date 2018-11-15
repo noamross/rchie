@@ -15,9 +15,9 @@
 #' @importFrom jsonlite fromJSON
 #' @export
 from_aml <- function(aml,
-                     simplifyVector = FALSE,
-                     simplifyDataFrame = simplifyVector,
-                     simplifyMatrix = simplifyVector,
+                     simplifyVector = FALSE,                   # nolint
+                     simplifyDataFrame = simplifyVector,       # nolint
+                     simplifyMatrix = simplifyVector,          # nolint
                      flatten = FALSE, ...) {
   json <- aml_to_json(aml)
   result <- fromJSON(json,
@@ -35,8 +35,8 @@ from_aml <- function(aml,
 #'
 #' @param aml a string, file, or URL in ArchieML format
 #' @param prettify prettyify JSON?
-#' @param indent if prettifying, what indent level? Passed to \link[jsonlite]{prettify}
-#'
+#' @param indent if prettifying, what indent level? Passed to
+#'   \link[jsonlite]{prettify}
 #' @importFrom jsonlite prettify
 #' @import V8
 #' @export
