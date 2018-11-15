@@ -12,7 +12,6 @@
 #' from_aml(aml = "key: value")
 #' from_aml("http://archieml.org/test/1.0/arrays.1.aml")
 #' @references \url{http://archieml.org/}
-#' @import V8
 #' @importFrom jsonlite fromJSON
 #' @export
 from_aml <- function(aml,
@@ -20,7 +19,6 @@ from_aml <- function(aml,
                      simplifyDataFrame = simplifyVector,
                      simplifyMatrix = simplifyVector,
                      flatten = FALSE, ...) {
-  aml <- read(aml)
   json <- aml_to_json(aml)
   result <- fromJSON(json,
     simplifyVector = simplifyVector,
@@ -33,11 +31,22 @@ from_aml <- function(aml,
   return(result)
 }
 
-aml_to_json <- function(aml, ...) {
+#' Convert AML to JSON
+#'
+#' @param aml a string, file, or URL in ArchieML format
+#' @param prettify prettyify JSON?
+#' @param indent if prettifying, what indent level? Passed to \link[jsonlite]{prettify}
+#'
+#' @importFrom jsonlite prettify
+#' @import V8
+#' @export
+aml_to_json <- function(aml, prettify=FALSE, indent = 4) {
+  aml <- read(aml)
   ct <- new_context()
   ct$source(system.file("archieml-js/archieml.js", package = "rchie"))
   ct$assign("aml", aml)
   json <- ct$eval("JSON.stringify(archieml.load(aml));")
+  if (prettify) json <- prettify(json, indent = indent)
   return(json)
 }
 
