@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 ```
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![Build Status](https://travis-ci.org/noamross/rchie.svg?branch=master)](https://travis-ci.org/noamross/rchie)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/noamross/rchie?branch=master&svg=true)](https://ci.appveyor.com/project/noamross/rchie)
+[![Build status](https://ci.appveyor.com/api/projects/status/osig88jvixel2taa/branch/master?svg=true)](https://ci.appveyor.com/project/NoamRoss/rchie/branch/master)
 [![codecov.io](https://codecov.io/github/noamross/rchie/coverage.svg?branch=master)](https://codecov.io/github/noamross/rchie?branch=master)
 
 
