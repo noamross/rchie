@@ -1,26 +1,18 @@
-language: r
-r:
-  - release
-  - devel
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+
 sudo: false
 cache: packages
-
+language: r
+r:
+  - oldrel
+  - release
+#  - devel
 addons:
   apt:
     packages:
       - libv8-dev
 
-r_github_packages:
-#- jimhester/covr
-- jimhester/lintr
-
 after_success:
-#- Rscript -e 'lintr::lint_package()'
-- Rscript -e 'covr::codecov()'
+  - Rscript -e 'covr::codecov()'
 
-
-
-notifications:
-  email:
-    on_success: change
-    on_failure: change
+r_check_args: "--as-cran --run-dontrun"
