@@ -7,8 +7,8 @@
 #' @param ... arguments to be passed to \link[jsonlite]{fromJSON} to determine
 #'   how JSON is parsed
 #' @examples
-#'    from_archie(aml = 'key: value')
-#'    from_archie('http://archieml.org/test/1.0/arrays.1.aml')
+#'    from_aml(aml = 'key: value')
+#'    from_aml('http://archieml.org/test/1.0/arrays.1.aml')
 #'
 #'    \dontshow{
 #'
@@ -21,14 +21,14 @@
 #'    #on.exit(setwd(wkdir))
 #'
 #'    for(file in list.files(pattern = "\\.aml")) {
-#'      imported <- from_archie(file)
+#'      imported <- from_aml(file)
 #'      test_that(paste0(imported$test, " (", basename(file), ")"), {
 #'        expect_identical(imported[-c(1, 2)], fromJSON(imported$result))
 #'      })
 #'    }
 #'
 #'    for(file in list.files(pattern = "\\.aml")) {
-#'      imported <- from_archie(file, simplifyVector = FALSE)
+#'      imported <- from_aml(file, simplifyVector = FALSE)
 #'      test_that(paste0(imported$test, " (with fromJSON arguments) (", basename(file), ")"), {
 #'        expect_identical(imported[-c(1, 2)], fromJSON(imported$result, simplifyVector=FALSE))
 #'      })
@@ -36,12 +36,12 @@
 #'
 #'
 #'    test_that("import from URL works", {
-#'      imported <- from_archie("http://archieml.org/test/1.0/all.0.aml")
+#'      imported <- from_aml("http://archieml.org/test/1.0/all.0.aml")
 #'      expect_identical(imported[-c(1, 2)], fromJSON(imported$result))
 #'    })
 #'
 #'    test_that("import from string works", {
-#'      imported <- from_archie(aml = "key: value")
+#'      imported <- from_aml(aml = "key: value")
 #'      expect_identical(imported, fromJSON("{\"key\":\"value\"}"))
 #'    })
 #'
@@ -49,7 +49,7 @@
 #' @references \url{http://archieml.org/}
 #' @import V8
 #' @export
-from_archie <- function(aml, ...) {
+from_aml <- function(aml, ...) {
 
   aml <- read(aml)
 

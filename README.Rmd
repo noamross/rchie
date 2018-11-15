@@ -24,7 +24,7 @@ This package is a wrapper for [archieml-js](https://github.com/newsdev/archieml-
 a parser for the New York Times' [ArchieML](http://archieml.org/) format.  ArchieML is designed
 to include structured data in free-form documents.
 
-Right now it just has one function, `from_archie`, which loads ArchieML data from a string, file, or URL.
+Right now it just has one function, `from_aml`, which loads ArchieML data from a string, file, or URL.
 
 archieml-js (included under `inst`, using `git subtree`) parses ArchieML to JSON.  It is run using V8, and then the JSON data is imported via jsonlite.
 
@@ -40,7 +40,7 @@ install_github('ropensci/rchie')
 
 ## Usage
 
-`from_archie` can read ArchieML from a string, file, or URL:
+`from_aml` can read ArchieML from a string, file, or URL:
 
 ```{r}
 library(rchie)
@@ -58,15 +58,15 @@ data1 = "
   []
   "
 
-from_archie(data1)          
-from_archie('http://archieml.org/test/1.0/arrays.1.aml')
+from_aml(data1)          
+from_aml('http://archieml.org/test/1.0/arrays.1.aml')
 ```
 
-Note that you can pass arguments through `from_archie` to `jsonlite::fromJSON` to
+Note that you can pass arguments through `from_aml` to `jsonlite::fromJSON` to
 determine how JSON is converted to R objects:
 
 ```{r}
-from_archie(data1, simplifyVector=FALSE)
+from_aml(data1, simplifyVector=FALSE)
 ```
 
 See http://archieml.org/ for more examples of ArchieML
