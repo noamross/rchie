@@ -30,3 +30,12 @@ test_that("import from string works", {
   imported <- from_aml(aml = "key: value")
   expect_equivalent(imported, jsonlite::fromJSON("{\"key\":\"value\"}"))
 })
+
+context("json")
+
+test_that("pretty-printing works", {
+  imported <- aml_to_json("arrays_complex.10.aml")
+  expect_equal(length(grep("\\n", imported)), 0)
+  imported <- aml_to_json("arrays_complex.10.aml", prettify = TRUE)
+  expect_gte(length(grep("\\n", imported)), 1)
+})
