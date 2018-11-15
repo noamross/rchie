@@ -11,13 +11,12 @@ Parses ArchieML data (\url{http:://archieml.org}) using the archieml-js library
 \tabular{ll}{ Package: \tab rchie\cr Type: \tab Package\cr Version:
 \tab 0.1\cr Date: \tab 2015-03-07\cr }
 }
-\author{
-Noam Ross
-}
 \references{
 \url{http://archieml.org/}
+}
+\author{
+Noam Ross
 }
 \keyword{JSON}
 \keyword{V8}
 \keyword{javascript}
-
