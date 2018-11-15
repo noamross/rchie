@@ -1,5 +1,34 @@
 # Run test on the examples
 
-if (identical(Sys.getenv("NOT_CRAN"), "true")) {
-  testthat::test_examples('../../man')
+context("archiml-js test suite")
+
+test_aml_file <- function(amlfile) {
+  lines <- readLines(amlfile)
+  n <- length(lines)
+  name <- gsub("^test:\\s", "", lines[1])
+  json <- gsub("^result:\\s", "", lines[2])
+  aml <- paste(lines[4:n], collapse = "\n")
+  aml_parsed <- from_aml(aml)
+  json_parsed <- jsonlite::fromJSON(json, simplifyVector = FALSE)
+  test_that(paste0(name, "(", basename(amlfile), ")"), {
+    expect_equivalent(aml_parsed, json_parsed)
+  })
 }
+
+aml_tests <- list.files(path = ".", pattern = "\\.aml")
+
+for (amlfile in aml_tests) {
+  test_aml_file(amlfile)
+}
+
+context("imports")
+
+test_that("import from URL works", {
+  imported <- from_aml("http://archieml.org/test/1.0/arrays.1.aml")
+  expect_equivalent(imported[-c(1, 2)], jsonlite::fromJSON(imported$result))
+})
+
+test_that("import from string works", {
+  imported <- from_aml(aml = "key: value")
+  expect_equivalent(imported, jsonlite::fromJSON("{\"key\":\"value\"}"))
+})

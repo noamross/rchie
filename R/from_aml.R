@@ -4,60 +4,41 @@
 #' is parsed to JSON using archieml-js, then imported via jsonlite.
 #'
 #' @param aml a string, file, or URL in ArchieML format
-#' @param ... arguments to be passed to \link[jsonlite]{fromJSON} to determine
-#'   how JSON is parsed
+#' @param simplifyVector,simplifyDataFrame,simplifyMatrix,flatten passed to
+#'   passed to \link[jsonlite]{fromJSON} to determine how JSON is parsed
+#' @param ... further arguments to be passed to \link[jsonlite]{fromJSON}, for
+#'   class-specific print methods
 #' @examples
-#'    from_aml(aml = 'key: value')
-#'    from_aml('http://archieml.org/test/1.0/arrays.1.aml')
-#'
-#'    \dontshow{
-#'
-#'    library(testthat)
-#'    library(jsonlite)
-#'    context("archiml-js test suite")
-#'
-#'    #wkdir <- getwd()
-#'    #setwd("tests/testthat")
-#'    #on.exit(setwd(wkdir))
-#'
-#'    for(file in list.files(pattern = "\\.aml")) {
-#'      imported <- from_aml(file)
-#'      test_that(paste0(imported$test, " (", basename(file), ")"), {
-#'        expect_identical(imported[-c(1, 2)], fromJSON(imported$result))
-#'      })
-#'    }
-#'
-#'    for(file in list.files(pattern = "\\.aml")) {
-#'      imported <- from_aml(file, simplifyVector = FALSE)
-#'      test_that(paste0(imported$test, " (with fromJSON arguments) (", basename(file), ")"), {
-#'        expect_identical(imported[-c(1, 2)], fromJSON(imported$result, simplifyVector=FALSE))
-#'      })
-#'    }
-#'
-#'
-#'    test_that("import from URL works", {
-#'      imported <- from_aml("http://archieml.org/test/1.0/all.0.aml")
-#'      expect_identical(imported[-c(1, 2)], fromJSON(imported$result))
-#'    })
-#'
-#'    test_that("import from string works", {
-#'      imported <- from_aml(aml = "key: value")
-#'      expect_identical(imported, fromJSON("{\"key\":\"value\"}"))
-#'    })
-#'
-#'    }
+#' from_aml(aml = "key: value")
+#' from_aml("http://archieml.org/test/1.0/arrays.1.aml")
 #' @references \url{http://archieml.org/}
 #' @import V8
+#' @importFrom jsonlite fromJSON
 #' @export
-from_aml <- function(aml, ...) {
-
+from_aml <- function(aml,
+                     simplifyVector = FALSE,
+                     simplifyDataFrame = simplifyVector,
+                     simplifyMatrix = simplifyVector,
+                     flatten = FALSE, ...) {
   aml <- read(aml)
+  json <- aml_to_json(aml)
+  result <- fromJSON(json,
+    simplifyVector = simplifyVector,
+    simplifyDataFrame = simplifyDataFrame,
+    simplifyMatrix = simplifyMatrix,
+    flatten = FALSE, ...
+  )
 
+  class(result) <- c("list", "from_aml")
+  return(result)
+}
+
+aml_to_json <- function(aml, ...) {
   ct <- new_context()
-  ct$source(system.file("archieml-js/archieml.js", package="rchie"))
+  ct$source(system.file("archieml-js/archieml.js", package = "rchie"))
   ct$assign("aml", aml)
-  ct$eval("var parsed = archieml.load(aml);")
-  return(ct$get("parsed", ...))
+  json <- ct$eval("JSON.stringify(archieml.load(aml));")
+  return(json)
 }
 
 #' @import httr
@@ -65,7 +46,7 @@ read <- function(x) {
   if (file.exists(x)) {
     readChar(x, file.info(x)$size)
   } else if (!is.null(httr::parse_url(x)$scheme) &&
-             identical(try(httr::status_code(httr::HEAD(x)), silent=TRUE), 200L)) {
+    identical(try(httr::status_code(httr::HEAD(x)), silent = TRUE), 200L)) {
     res <- httr::GET(x)
     httr::stop_for_status(res)
     httr::content(res, "text")

@@ -5,3 +5,4 @@
 *.Rproj
 .httr-oauth
 tests/testthat/token_file.rds
+.V8history

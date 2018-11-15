@@ -167,7 +167,6 @@ function load(input, options) {
         scope = data;
         stack = [];
       }
-      var lastBit = keyBits[keyBits.length - 1];
 
       // Within freeforms, the `type` of nested objects and arrays is taken
       // verbatim from the `keyScope`.

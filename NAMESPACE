@@ -3,3 +3,4 @@
 export(from_aml)
 import(V8)
 import(httr)
+importFrom(jsonlite,fromJSON)

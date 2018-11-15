@@ -6,3 +6,4 @@ tests/testthat/token_file.enc
 ^appveyor\.yml$
 ^README\.Rmd$
 ^README-.*\.png$
+^\.V8history$
