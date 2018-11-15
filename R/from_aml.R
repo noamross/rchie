@@ -38,7 +38,7 @@ from_aml <- function(aml,
 #' @param indent if prettifying, what indent level? Passed to
 #'   \link[jsonlite]{prettify}
 #' @importFrom jsonlite prettify
-#' @import V8
+#' @importFrom V8 new_context
 #' @export
 aml_to_json <- function(aml, prettify=FALSE, indent = 4) {
   aml <- read(aml)
