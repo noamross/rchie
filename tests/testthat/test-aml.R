@@ -3,15 +3,13 @@
 context("archiml-js test suite")
 
 test_aml_file <- function(amlfile) {
-  lines <- readLines(amlfile)
-  n <- length(lines)
-  name <- gsub("^test:\\s", "", lines[1])
-  json <- gsub("^result:\\s", "", lines[2])
-  aml <- paste(lines[4:n], collapse = "\n")
-  aml_parsed <- from_aml(aml)
-  json_parsed <- jsonlite::fromJSON(json, simplifyVector = FALSE)
-  test_that(paste0(name, "(", basename(amlfile), ")"), {
-    expect_equivalent(aml_parsed, json_parsed)
+  aml_parsed <- from_aml(amlfile)
+
+  test_that(paste0(aml_parsed$test, "(", basename(amlfile), ")"), {
+    expect_equivalent(
+      aml_parsed[-c(1,2)],
+      jsonlite::fromJSON(aml_parsed$result, simplifyVector = FALSE)
+    )
   })
 }
 
