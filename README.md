@@ -4,7 +4,7 @@ Parse Archie Markup Language (ArchieML) documents into JavaScript objects.
 
 Read about the ArchieML specification at [archieml.org](http://archieml.org).
 
-The current version is `v0.1.2`.
+The current version is `v0.4.2`.
 
 ## Installation
 
@@ -24,6 +24,18 @@ The current version is `v0.1.2`.
 ```
 var archieml = require('archieml');
 var parsed = archieml.load("key: value");
+>> {"key": "value"}
+```
+
+### Parser options
+
+Inline comments are now deprecated in ArchieML. They will continue to be supported until 1.0, but are now disabled by default. They can be enabled by passing an options object as the second parameter in `load`:
+
+```
+archieml.load("key: value [comment]");
+>> {"key": "value [comment]"}
+
+archieml.load("key: value [comment]", {comments: true});
 >> {"key": "value"}
 ```
 
@@ -57,14 +69,16 @@ You can use a test document to start that's public to everyone. It will ask you 
 
 ## Tests
 
-There is a full test suite under the `test/` directory. Simply open up `test/index.html` in a web browser to run it.
-
-```
-rspec
-```
+A full shared test suite is included from the [archieml.org](https://github.com/newsdev/archieml.org) repository, under `/test`. After running `npm install`, run `nodeunit` to execute the tests.
 
 ## Changelog
 
+* `0.4.2` - Fixes bug #19.
+* `0.4.1` - Fixes bug #21.
+* `0.4.0` - Updates to how dot-notation is handled in freeform array, unicode key support.
+* `0.3.1` - Added support for freeform arrays.
+* `0.3.0` - Added support for nested arrays. Follows modifications in ArchieML [CR-20150509](http://archieml.org/spec/1.0/CR-20150509.html).
+* `0.2.0` - Arrays that are redefined now overwrite the previous definition. Skips within multi-line values break up the value. Follows modifications in ArchieML [CR-20150306](http://archieml.org/spec/1.0/CR-20150423.html).
 * `0.1.2` - More consistent handling of newlines. Fixes issue #4, around detecting the scope of multi-line values.
 * `0.1.1` - Fixes issue #1, removing comment backslashes.
 * `0.1.0` - Initial release supporting the first version of the ArchieML spec, published [2015-03-06](http://archieml.org/spec/1.0/CR-20150306.html).

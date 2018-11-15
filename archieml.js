@@ -1,32 +1,38 @@
-'use strict';
+
 
 // Structure inspired by John Resig's HTML parser
 // http://ejohn.org/blog/pure-javascript-html-parser/
 
 (function() {
+  'use strict';
 
 // The load function takes a string of text as its only argument.
 // It then proceeds to match the text to one of several regular expressions
 // which match patterns for different types of commands in AML.
-function load(input) {
+function load(input, options) {
+  var whitespacePattern = '\\u0000\\u0009\\u000A\\u000B\\u000C\\u000D\\u0020\\u00A0\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200A\\u200B\\u2028\\u2029\\u202F\\u205F\\u3000\\uFEFF';
+  var slugBlacklist = whitespacePattern + '\\u005B\\u005C\\u005D\\u007B\\u007D\\u003A';
+
   var nextLine = new RegExp('.*((\r|\n)+)');
-  var startKey = new RegExp('^\\s*([A-Za-z0-9-_\.]+)[ \t\r]*:[ \t\r]*(.*(?:\n|\r|$))');
+  var startKey = new RegExp('^\\s*([^' + slugBlacklist + ']+)[ \t\r]*:[ \t\r]*(.*(?:\n|\r|$))');
   var commandKey = new RegExp('^\\s*:[ \t\r]*(endskip|ignore|skip|end).*?(\n|\r|$)', 'i');
   var arrayElement = new RegExp('^\\s*\\*[ \t\r]*(.*(?:\n|\r|$))');
-  var scopePattern = new RegExp('^\\s*(\\[|\\{)[ \t\r]*([A-Za-z0-9-_\.]*)[ \t\r]*(?:\\]|\\}).*?(\n|\r|$)');
+  var scopePattern = new RegExp('^\\s*(\\[|\\{)[ \t\r]*([\+\.]*)[ \t\r]*([^' + slugBlacklist + ']*)[ \t\r]*(?:\\]|\\}).*?(\n|\r|$)');
 
   var data = {},
       scope = data,
+
+      stack = [],
+      stackScope = undefined,
 
       bufferScope = null,
       bufferKey = null,
       bufferString = '',
 
-      isSkipping = false,
+      isSkipping = false;
 
-      array = null,
-      arrayType = null,
-      arrayFirstKey = null;
+  var options = options || {};
+  if (options.comments !== true) options.comments = false;
 
   while (input) {
     // Inside the input stream loop, the `input` string is trimmed down as matches
@@ -38,12 +44,15 @@ function load(input) {
 
       parseCommandKey(match[1].toLowerCase());
 
-    } else if (!isSkipping && startKey.exec(input) && (!array || arrayType !== 'simple')) {
+    } else if (!isSkipping && startKey.exec(input) &&
+        (!stackScope || stackScope.arrayType !== 'simple')) {
       match = startKey.exec(input);
 
       parseStartKey(match[1], match[2] || '');
 
-    } else if (!isSkipping && arrayElement.exec(input) && array && arrayType !== 'complex') {
+    } else if (!isSkipping && arrayElement.exec(input) && stackScope && stackScope.array &&
+        (stackScope.arrayType !== 'complex' && stackScope.arrayType !== 'freeform') &&
+        stackScope.flags.indexOf('+') < 0) {
       match = arrayElement.exec(input);
 
       parseArrayElement(match[1]);
@@ -51,15 +60,16 @@ function load(input) {
     } else if (!isSkipping && scopePattern.exec(input)) {
       match = scopePattern.exec(input);
 
-      parseScope(match[1], match[2]);
+      parseScope(match[1], match[2], match[3]);
 
     } else if (nextLine.exec(input)) {
       match = nextLine.exec(input);
 
-      bufferString += input.substring(0, match[0].length);
+      parseText(match[0]);
 
     } else {
       // End of document reached
+      parseText(input);
       input = '';
     }
 
@@ -74,18 +84,9 @@ function load(input) {
     // its value, by calling `flushBuffer`.
     flushBuffer();
 
-    // Special handling for arrays. If this is the start of the array, remember
-    // which key was encountered first. If this is a duplicate encounter of
-    // that key, start a new object.
-    if (array) {
-      // If we're within a simple array, ignore
-      arrayType = arrayType || 'complex';
-      if (arrayType === 'simple') return;
+    incrementArrayElement(key);
 
-      // arrayFirstKey may be either another key, or null
-      if (arrayFirstKey === null || arrayFirstKey === key) array.push(scope = {});
-      arrayFirstKey = arrayFirstKey || key;
-    }
+    if (stackScope && stackScope.flags.indexOf('+') > -1) key = 'value';
 
     bufferKey = key;
     bufferString = restOfLine;
@@ -96,12 +97,12 @@ function load(input) {
   function parseArrayElement(value) {
     flushBuffer();
 
-    arrayType = arrayType || 'simple';
+    stackScope.arrayType = stackScope.arrayType || 'simple';
 
-    array.push('');
-    bufferKey = array;
+    stackScope.array.push('');
+    bufferKey = stackScope.array;
     bufferString = value;
-    flushBufferInto(array, {replace: true});
+    flushBufferInto(stackScope.array, {replace: true});
   }
 
   function parseCommandKey(command) {
@@ -129,9 +130,11 @@ function load(input) {
         isSkipping = false;
         break;
     }
+
+    flushBuffer();
   }
 
-  function parseScope(scopeType, scopeKey) {
+  function parseScope(scopeType, flags, scopeKey) {
     // Throughout the parsing, `scope` refers to one of the following:
     //   * `data`
     //   * an object - one level within `data` - when we're within a {scope} block
@@ -141,36 +144,112 @@ function load(input) {
     // `scope` changes whenever a scope key is encountered. It also changes
     // within parseStartKey when we start a new object within an array.
     flushBuffer();
-    flushScope();
 
     if (scopeKey == '') {
-      // Reset scope to global data object
-      scope = data;
+
+      // Move up a level
+      var lastStackItem = stack.pop();
+      scope = (lastStackItem ? lastStackItem.scope : data) || data
+      stackScope = stack[stack.length - 1];
 
     } else if (scopeType === '[' || scopeType === '{') {
-      // Drill down into the appropriate scope, in case the key uses
-      // dot.notation.
+      var nesting = false;
       var keyScope = data;
-      var keyBits = scopeKey.split('.');
-      for (var i=0; i<keyBits.length - 1; i++) {
-        keyScope = keyScope[keyBits[i]] = keyScope[keyBits[i]] || {};
+
+      // If the flags include ".", drill down into the appropriate scope.
+      if (flags.indexOf('.') > -1) {
+        incrementArrayElement(scopeKey, flags);
+        nesting = true;
+        if (stackScope) keyScope = scope;
+
+      // Otherwise, make sure we reset to the global scope
+      } else {
+        scope = data;
+        stack = [];
       }
 
+      // Within freeforms, the `type` of nested objects and arrays is taken
+      // verbatim from the `keyScope`.
+      if (stackScope && stackScope.flags.indexOf('+') > -1) {
+        var parsedScopeKey = scopeKey;
+
+      // Outside of freeforms, dot-notation interpreted as nested data.
+      } else {
+        var keyBits = scopeKey.split('.');
+        for (var i=0; i<keyBits.length - 1; i++) {
+          keyScope = keyScope[keyBits[i]] = keyScope[keyBits[i]] || {};
+        }
+        var parsedScopeKey = keyBits[keyBits.length - 1];
+      }
+
+      // Content of nested scopes within a freeform should be stored under "value."
+      if (stackScope && stackScope.flags.indexOf('+') > -1 && flags.indexOf('.') > -1) {
+        if (scopeType === '[') parsedScopeKey = 'value';
+        else if (scopeType === '{') scope = scope.value = {};
+      }
+
+      var stackScopeItem = {
+        array: null,
+        arrayType: null,
+        arrayFirstKey: null,
+        flags: flags,
+        scope: scope
+      };
       if (scopeType == '[') {
-        array = keyScope[keyBits[keyBits.length - 1]] = keyScope[keyBits[keyBits.length - 1]] || [];
-        if (typeof array == 'string') array = keyScope[keyBits[keyBits.length - 1]] = [];
-        // If we're reopening this array, set the arrayType
-        if (array.length > 0) arrayType = typeof array[0] === 'string' ? 'simple' : 'complex';
+        stackScopeItem.array = keyScope[parsedScopeKey] = [];
+        if (flags.indexOf('+') > -1) stackScopeItem.arrayType = 'freeform';
+        if (nesting) {
+          stack.push(stackScopeItem);
+        } else {
+          stack = [stackScopeItem];
+        }
+        stackScope = stack[stack.length - 1];
 
       } else if (scopeType == '{') {
-        scope = keyScope[keyBits[keyBits.length - 1]] = keyScope[keyBits[keyBits.length - 1]] || {};
+        if (nesting) {
+          stack.push(stackScopeItem);
+        } else {
+          scope = keyScope[parsedScopeKey] = (typeof keyScope[parsedScopeKey] === 'object') ? keyScope[parsedScopeKey] : {};
+          stack = [stackScopeItem];
+        }
+        stackScope = stack[stack.length - 1];
+      }
+    }
+  }
+
+  function parseText(text) {
+    if (stackScope && stackScope.flags.indexOf('+') > -1 && text.match(/[^\n\r\s]/)) {
+      stackScope.array.push({"type": "text", "value": text.replace(/(^\s*)|(\s*$)/g, '')});
+    } else {
+      bufferString += input.substring(0, text.length);
+    }
+  }
+
+  function incrementArrayElement(key) {
+    // Special handling for arrays. If this is the start of the array, remember
+    // which key was encountered first. If this is a duplicate encounter of
+    // that key, start a new object.
+
+    if (stackScope && stackScope.array) {
+      // If we're within a simple array, ignore
+      stackScope.arrayType = stackScope.arrayType || 'complex';
+      if (stackScope.arrayType === 'simple') return;
+
+      // arrayFirstKey may be either another key, or null
+      if (stackScope.arrayFirstKey === null || stackScope.arrayFirstKey === key) stackScope.array.push(scope = {});
+      if (stackScope.flags.indexOf('+') > -1) {
+        scope.type = key
+      } else {
+        stackScope.arrayFirstKey = stackScope.arrayFirstKey || key;
       }
     }
   }
 
   function formatValue(value, type) {
-    value = value.replace(/(?:^\\)?\[[^\[\]\n\r]*\](?!\])/mg, ""); // remove comments
-    value = value.replace(/\[\[([^\[\]\n\r]*)\]\]/g, "[$1]"); // [[]] => []
+    if (options.comments) {
+      value = value.replace(/(?:^\\)?\[[^\[\]\n\r]*\](?!\])/mg, ""); // remove comments
+      value = value.replace(/\[\[([^\[\]\n\r]*)\]\]/g, "[$1]"); // [[]] => []
+    }
 
     if (type == 'append') {
       // If we're appending to a multi-line string, escape special punctuation
@@ -185,16 +264,19 @@ function load(input) {
   function flushBuffer() {
     var result = bufferString + '';
     bufferString = '';
+    bufferKey = null;
     return result;
   }
 
   function flushBufferInto(key, options) {
     options = options || {};
+    var existingBufferKey = bufferKey;
     var value = flushBuffer();
 
     if (options.replace) {
       value = formatValue(value, 'replace').replace(new RegExp('^\\s*'), '');
       bufferString = (new RegExp('\\s*$')).exec(value)[0];
+      bufferKey = existingBufferKey
     } else {
       value = formatValue(value, 'append');
     }
@@ -220,13 +302,6 @@ function load(input) {
     }
   }
 
-  function flushScope() {
-    array = null;
-    arrayType = null;
-    arrayFirstKey = null;
-    bufferKey = null;
-  }
-
   flushBuffer();
   return data;
 }
@@ -249,4 +324,3 @@ if (typeof define === 'function' && define.amd) {
   });
 }
 }.call(this))
-
