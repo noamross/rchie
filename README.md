@@ -1,9 +1,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-<img align="right" width="200"  src="https://raw.githubusercontent.com/noamross/rchie/master/inst/archieml-tri-grey.png">
-
 # rchie: An R parser for ArchieML
+
+<img align="right" width="180"  src="https://raw.githubusercontent.com/noamross/rchie/master/inst/archieml-tri-grey.png">
 
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively

@@ -1,0 +1,25 @@
+bootswatch: flatly
+
+url: https://noamross.github.io/rchie
+template:
+  params:
+    docsearch:
+      api_key: 2bf5efbf4437480db9685f3d09019982
+      index_name: rchie
+
+navbar:
+  title: rchie
+  type: inverse
+  left:
+  - text: Home
+    icon: fa-home
+    href: index.html
+  - text: Reference
+    href: reference/index.html
+  - text: Release Notes
+    href: news/index.html
+  - text: ArchiML.org
+    href: http://archieml.org/
+  right:
+  - icon: fa-github fa-lg
+    href: https://github.com/noamross/rchie

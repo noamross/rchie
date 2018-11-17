@@ -1,6 +1,6 @@
 Package: rchie
 Type: Package
-Title: A Parser for ArchieML
+Title: A Parser for 'ArchieML'
 Version: 1.0.0
 Authors@R: c(person(given = "Noam",
              family = "Ross",
