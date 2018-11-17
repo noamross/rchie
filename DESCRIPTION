@@ -8,7 +8,7 @@ Authors@R: c(person(given = "Noam",
              email = "noam.ross@gmail.com",
              comment = c(ORCID = "0000-0002-2136-0000")))
 Description: Parses the 'ArchieML' format from the New York Times,
-  Also provides utilities for retrieving ArchieML from Google Drive documents.
+  Also provides utilities for retrieving Google Drive documents for parsing.
 License: MIT + file LICENSE
 URL: https://github.com/noamross/rchie
 BugReports: https://github.com/noamross/rchie/issues
