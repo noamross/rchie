@@ -1,8 +1,0 @@
-test: subarrays can be closed to return to the parent level
-result: {"array":[{"subarray":[{"subkey":"value"}],"parentkey":"value"}]}
-
-[array]
-[.subarray]
-subkey: value
-[]
-parentkey: value
