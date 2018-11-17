@@ -2,7 +2,7 @@
 
 export(aml_to_json)
 export(from_aml)
-import(V8)
-import(httr)
+export(from_archie)
+importFrom(V8,new_context)
 importFrom(jsonlite,fromJSON)
 importFrom(jsonlite,prettify)

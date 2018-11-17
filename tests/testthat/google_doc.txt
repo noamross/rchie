@@ -1,0 +1,51 @@
+﻿Test document for importing ArchieML files from Google Drive
+
+
+key: value
+
+
+google-link: This is a link.
+google-link-standalone: http://www.nytimes.com/2016/04/03/us/politics/donald-trump-general-election.html?q=1#1 
+google-link-standalone-raw: http://www.nytimes.com/2016/04/03/us/politics/donald-trump-general-election.html?q=1#1 
+smart-quotes: <a href=“http://www.nytimes.com”>nytimes.com</a>
+
+
+[array]
+* 1
+* 2
+[]
+
+
+heading-link: Link to heading 1
+heading1: Heading 1
+heading2: Heading 2
+heading3: Heading 3
+heading4: Heading 4
+heading5: Heading 5
+heading6: Heading 6
+
+
+nbsp: Internal &nbsp;s are not converted
+
+
+bold-word: This word is bolded.
+italic-word: This word is italicized.
+underline-word: This word is underlined.
+styled-word: This word has many styles.
+strange-word: This word is strange, but bold.
+
+
+bold-value: This value is bolded.
+italic-value: This value is italicized.
+underline-value: This value is underlined.
+styled-value: This value has many styles.
+
+
+bold-line: This line is bolded.
+italic-line: This line is italicized.
+underline-line: This line is underlined.
+styled-line: This line has many styles.
+
+
+soft-line-breaks: Are treated as hard line breaks
+(so this shouldn’t be included in the value)

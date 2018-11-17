@@ -1,3 +1,7 @@
+^docs$
+^_pkgdown\.yml$
+^\.github$
+^CODE_OF_CONDUCT\.md$
 ^codecov\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
@@ -8,4 +12,4 @@ tests/testthat/token_file.enc
 ^README\.Rmd$
 ^README-.*\.png$
 ^\.V8history$
-^.TODO\.md$
+^TODO\.md$
