@@ -46,6 +46,7 @@ aml_to_json <- function(aml, prettify=FALSE, indent = 4) {
   ct$source(system.file("archieml-js/archieml.js", package = "rchie"))
   ct$assign("aml", aml)
   json <- ct$eval("JSON.stringify(archieml.load(aml));")
+  class(json) <- "json"
   if (prettify) json <- prettify(json, indent = indent)
   return(json)
 }

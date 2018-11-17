@@ -8,3 +8,4 @@ tests/testthat/token_file.enc
 ^README\.Rmd$
 ^README-.*\.png$
 ^\.V8history$
+^.TODO\.md$
