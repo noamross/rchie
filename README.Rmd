@@ -14,6 +14,7 @@ knitr::opts_chunk$set(
 # rchie: An R parser for ArchieML
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![CRAN version](http://www.r-pkg.org/badges/version/rchie)](https://cran.r-project.org/package=rchie)
 [![Build
 Status](https://travis-ci.org/noamross/rchie.svg?branch=master)](https://travis-ci.org/noamross/rchie)
 [![Build
