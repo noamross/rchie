@@ -12,6 +12,9 @@ addons:
     packages:
       - libv8-dev
 
+r_packages:
+  - googledrive
+
 after_success:
   - Rscript -e 'covr::codecov()'
 
