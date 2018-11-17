@@ -28,7 +28,7 @@ aml_to_json("http://archieml.org/test/1.0/arrays.1.aml")
 
 \donttest{\dontrun{
 # See source at:
-https://drive.google.com/open?id=1oYHXxvzscBBSBhd6xg5ckUEZo3tLytk9zY0VV_Y7SGs
+# https://drive.google.com/open?id=1oYHXxvzscBBSBhd6xg5ckUEZo3tLytk9zY0VV_Y7SGs
 library(googledrive)
 aml_to_json(as_id("1oYHXxvzscBBSBhd6xg5ckUEZo3tLytk9zY0VV_Y7SGs"),
   pretty = TRUE)

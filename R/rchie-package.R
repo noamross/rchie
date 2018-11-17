@@ -1,6 +1,8 @@
 #' Import ArchieML Data
 #'
-#' Parses ArchieML data (\url{http://archieml.org}) using the archieml-js
+  #' \if{html}{\figure{logo.png}{options: align="right" width=120px style="padding-right:50px"}}
+#' Parses [ArchieML](http://archieml.org) markup using the
+#' [archieml-js](https://github/newsdev/archieml-js)
 #' library.  The primary function is [from_aml].
 #'
 #' \tabular{ll}{ Package: \tab rchie\cr Type: \tab Package\cr Version: \tab

@@ -6,7 +6,9 @@
 \alias{rchie}
 \title{Import ArchieML Data}
 \description{
-Parses ArchieML data (\url{http://archieml.org}) using the archieml-js
+\if{html}{\figure{logo.png}{options: align="right" width=120px style="padding-right:50px"}}
+Parses \href{http://archieml.org}{ArchieML} markup using the
+\href{https://github/newsdev/archieml-js}{archieml-js}
 library.  The primary function is \link{from_aml}.
 }
 \details{
