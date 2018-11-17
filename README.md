@@ -1,19 +1,20 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+<img align="right" width="200"  src="https://raw.githubusercontent.com/noamross/rchie/master/inst/archieml-tri-grey.png">
+
 # rchie: An R parser for ArchieML
 
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![CRAN version](http://www.r-pkg.org/badges/version/rchie)](https://cran.r-project.org/package=rchie)
+[![CRAN
+version](http://www.r-pkg.org/badges/version/rchie)](https://cran.r-project.org/package=rchie)
 [![Build
 Status](https://travis-ci.org/noamross/rchie.svg?branch=master)](https://travis-ci.org/noamross/rchie)
 [![Build
 status](https://ci.appveyor.com/api/projects/status/osig88jvixel2taa/branch/master?svg=true)](https://ci.appveyor.com/project/NoamRoss/rchie/branch/master)
 [![codecov.io](https://codecov.io/github/noamross/rchie/coverage.svg?branch=master)](https://codecov.io/github/noamross/rchie?branch=master)
-
-<img align="right" width="200" height="183" src="https://raw.githubusercontent.com/noamross/rchie/master/inst/archieml-tri-grey.png">
 
 *“Structured text, for an unstructured world.”*
 
