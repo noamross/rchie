@@ -15,12 +15,14 @@ addons:
 r_packages:
   - googledrive
 
+r_github_packages:
+  - pkgdown
+
 after_success:
   - Rscript -e 'covr::codecov()'
 
 r_check_args: "--as-cran --run-dontrun"
 
-before_deploy: Rscript -e 'source("https://install-github.me/r-lib/pkgdown")'
 deploy:
   provider: script
   script: Rscript -e 'googledrive::drive_auth_config(active = FALSE, api_key = Sys.getenv("RCHIE_DRIVE_KEY"), verbose = FALSE); pkgdown::deploy_site_github(new_process=FALSE)'
