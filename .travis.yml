@@ -22,3 +22,6 @@ deploy:
   provider: script
   script: Rscript -e 'googledrive::drive_auth_config(active = FALSE, api_key = Sys.getenv("RCHIE_DRIVE_KEY"), verbose = FALSE); pkgdown::deploy_site_github(new_process=FALSE)'
   skip_cleanup: true
+  on:
+    branch: master
+    condition: "$TRAVIS_R_VERSION_STRING = release"
