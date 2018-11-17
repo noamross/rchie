@@ -16,7 +16,7 @@ r_packages:
   - googledrive
 
 r_github_packages:
-  - pkgdown
+  - r-lib/pkgdown
 
 after_success:
   - Rscript -e 'covr::codecov()'
