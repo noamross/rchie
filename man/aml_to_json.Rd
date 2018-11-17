@@ -4,16 +4,39 @@
 \alias{aml_to_json}
 \title{Convert AML to JSON}
 \usage{
-aml_to_json(aml, prettify = FALSE, indent = 4)
+aml_to_json(aml, pretty = FALSE, indent = 4)
 }
 \arguments{
-\item{aml}{a string, file, or URL in ArchieML format}
+\item{aml}{a string, file, connection, URL, or  Google Drive ID created by
+\link[googledrive:as_id]{googledrive::as_id} from which to read ArchieML. Inputs of length > 1 or
+with line breaks or non-existent files will always be treated as raw
+ArchieML.  To read multple ArchieML inputs use a function such as \link{lapply}.}
 
-\item{prettify}{prettyify JSON?}
+\item{pretty}{prettify JSON output?}
 
 \item{indent}{if prettifying, what indent level? Passed to
-\link[jsonlite]{prettify}}
+\link[jsonlite]{prettify}.}
 }
 \description{
-Convert AML to JSON
+This imports data from  New York Times' ArchieML format as a JSON sting.
+Text is parsed to JSON using
+\href{https://github.com/newsdev/archieml-js}{archieml-js}.
+}
+\examples{
+aml_to_json(aml = "key: value")
+aml_to_json("http://archieml.org/test/1.0/arrays.1.aml")
+
+\donttest{\dontrun{
+# See source at:
+https://drive.google.com/open?id=1oYHXxvzscBBSBhd6xg5ckUEZo3tLytk9zY0VV_Y7SGs
+library(googledrive)
+aml_to_json(as_id("1oYHXxvzscBBSBhd6xg5ckUEZo3tLytk9zY0VV_Y7SGs"),
+  pretty = TRUE)
+#}}
+}
+\references{
+\url{http://archieml.org/}
+}
+\seealso{
+\link{from_aml}
 }

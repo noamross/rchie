@@ -7,7 +7,7 @@ test_aml_file <- function(amlfile) {
 
   test_that(paste0(aml_parsed$test, "(", basename(amlfile), ")"), {
     expect_equivalent(
-      aml_parsed[-c(1,2)],
+      aml_parsed[-c(1, 2)],
       jsonlite::fromJSON(aml_parsed$result, simplifyVector = FALSE)
     )
   })
@@ -16,17 +16,19 @@ test_aml_file <- function(amlfile) {
 aml_tests <- list.files(path = ".", pattern = "\\.aml")
 
 for (amlfile in aml_tests) {
+  if (.Platform$OS.type == "windows" &&
+    grepl("unicode", amlfile, fixed = TRUE)) {
+    next
+  }
   test_aml_file(amlfile)
 }
 
-context("imports")
 
-test_that("import from URL works", {
-  imported <- from_aml("http://archieml.org/test/1.0/arrays.1.aml")
-  expect_equivalent(imported[-c(1, 2)], jsonlite::fromJSON(imported$result))
-})
+context("JSON handling")
 
-test_that("import from string works", {
-  imported <- from_aml(aml = "key: value")
-  expect_equivalent(imported, jsonlite::fromJSON("{\"key\":\"value\"}"))
+test_that("pretty-printing works", {
+  imported <- aml_to_json("arrays_complex.10.aml")
+  expect_equal(length(grep("\\n", imported)), 0)
+  imported <- aml_to_json("arrays_complex.10.aml", pretty = TRUE)
+  expect_gte(length(grep("\\n", imported)), 1)
 })
