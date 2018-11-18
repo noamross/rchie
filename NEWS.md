@@ -6,7 +6,7 @@
 * Added `aml_to_json`
 * More robust, S3-powereed input options of string/file/url/Google Doc
 * Updated to archieml-js 4.2
-* Added Google Drive Functionality
+* Added Google Drive functionality
 * Full test suite
 * Improved documentaion
 * Added a `NEWS.md` file to track changes to the package.
