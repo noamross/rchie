@@ -45,6 +45,9 @@ Roadmap
 I don't have big plans to expand **rchie**, but here are some things that might
 happen at some point if someone is inclined to tackle them.
 
+-   I'd love to have some more examples.  If you have a project that uses
+    **rchie** that you'd like to share, please let me know!  I'll link to it
+    or perhaps make a vignette.
 -   It might be fun to build a pure R or C++ parser and not require V8 or any
     system requirements.
 -   It would be useful to parse value fields in Google Docs so as to get links

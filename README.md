@@ -18,18 +18,27 @@ status](https://ci.appveyor.com/api/projects/status/osig88jvixel2taa/branch/mast
 
 This package is a wrapper for
 [archieml-js](https://github.com/newsdev/archieml-js), a parser for the
-New York Times’ [ArchieML](http://archieml.org/) format. ArchieML is
-designed for non-coders writing documents that need to include some
-structured data.
+New York Times’ ArchieML markup format. ArchieML is designed for
+non-coders writing documents that need to include some structured data,
+especially writers producing structured text that will be rendered on
+website or interactive graphics. Learn more about ArchieML’s syntax and
+use cases at <http://archieml.org/>, and see examples of its use
+[here](https://awards.journalists.org/entries/archieml/).
 
-## Install
+## Installation
 
-Note that, because it uses the V8 package, rchie has a system
+Install **rchie** from CRAN with:
+
+    install.packages("rchie")
+
+Install the development version of **rchie** from GitHub using
+**remotes**, **devtools**, or my zero-dependency preference:
+
+    source("https://install-github.me/noamross/rchie")
+
+Note that, because **rchie** uses the V8 package, it has a system
 requirement of `libv8`. See the [V8
-README](https://github.com/jeroen/V8#v8) for installation instructions.
-
-    library(devtools)
-    install_github('noamross/rchie')
+README](https://github.com/jeroen/V8#v8) for instructions.
 
 ## Usage
 
@@ -106,6 +115,8 @@ aml_to_json(data1, pretty = TRUE)
 #> 
 ```
 
+### Using Google Docs
+
 Since a common use-case for ArchieML is reading semi-structured text
 written in Google Docs, **rchie** includes optional methods to read
 items from Google Drive. To use them, you must have the
@@ -141,8 +152,18 @@ head(gdata)
 #> [1] "2"
 ```
 
-See <http://archieml.org/> for more examples and use cases of ArchieML.
+If you are using Google Docs to input ArchieML regularly, the [ArchieML
+Google Docs
+plugin](https://chrome.google.com/webstore/detail/archieml/jelifjgbakgjapbobohocpbpdoiljokp)
+is quite helpful for previewing parsed data as you type.
 
-Please note that **rchie** is released with a [Contributor Code of
+## Contributing
+
+I’d love you to contribute to **rchie**\! I’d especially like some
+examples of use-cases - R Markdown documents, Shiny Apps, etc. - that I
+can feature in the documentation. Please take a look the the
+[contributing guidelines](CONTRIBUTING.md).
+
+Note that **rchie** is released with a [Contributor Code of
 Conduct](CODE_OF_CONDUCT.md). By contributing to this project, you agree
 to abide by its terms.

@@ -4,14 +4,16 @@
 \name{rchie-package}
 \alias{rchie-package}
 \alias{rchie}
-\title{Import ArchieML Data}
+\title{A wrapper for the archieml-js}
 \description{
 \if{html}{\figure{logo.png}{options: align="right" width=120px style="padding-right:50px"}}
-Parses \href{http://archieml.org}{ArchieML} markup using the
-\href{https://github/newsdev/archieml-js}{archieml-js}
-library.  The primary function is \link{from_aml}.
 }
 \details{
+\strong{rchie} parses \href{http://archieml.org}{ArchieML} markup using the
+\href{https://github.com/newsdev/archieml-js}{archieml-js}
+library. The primary function is \link{from_aml}.  See the
+\href{https://noamross.github.io/rchie/}{README} for details.
+
 \tabular{ll}{ Package: \tab rchie\cr Type: \tab Package\cr Version: \tab
 1.0.0\cr Date: \tab 2018-11-17\cr }
 }

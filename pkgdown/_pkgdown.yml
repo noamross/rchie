@@ -18,8 +18,16 @@ navbar:
     href: reference/index.html
   - text: Release Notes
     href: news/index.html
-  - text: ArchiML.org
+  - text: Contributing
+    href: CONTRIBUTING.html
+  - text: ArchieML.org
     href: http://archieml.org/
   right:
   - icon: fa-github fa-lg
     href: https://github.com/noamross/rchie
+
+reference:
+  - title: All Functions
+    contents:
+      - from_aml
+      - aml_to_json

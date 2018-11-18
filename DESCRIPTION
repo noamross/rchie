@@ -2,15 +2,21 @@ Package: rchie
 Type: Package
 Title: A Parser for 'ArchieML'
 Version: 1.0.0
-Authors@R: c(person(given = "Noam",
-             family = "Ross",
-             role = c("aut", "cre"),
-             email = "noam.ross@gmail.com",
-             comment = c(ORCID = "0000-0002-2136-0000")))
-Description: Parses the 'ArchieML' format from the New York Times,
+Authors@R: c(
+    person(given = "Noam",
+           family = "Ross",
+           role = c("aut", "cre"),
+           email = "noam.ross@gmail.com",
+           comment = c(ORCID = "0000-0002-2136-0000")),
+    person(given = "Michael",
+           family = "Strickland",
+           role = "aut",
+           comment = "Author of archieml-js library")
+    )
+Description: Parses the 'ArchieML' format from the New York Times <http://archieml.org>.
   Also provides utilities for retrieving Google Drive documents for parsing.
 License: MIT + file LICENSE
-URL: https://github.com/noamross/rchie
+URL: https://github.com/noamross/rchie, https://github.com/newsdev/archieml-js
 BugReports: https://github.com/noamross/rchie/issues
 Encoding: UTF-8
 Imports:

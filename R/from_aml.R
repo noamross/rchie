@@ -8,21 +8,23 @@
 #' This function was formerly named `from_archie`, which is now deprecated.
 #'
 #' @param aml a string, file, connection, URL, or  Google Drive ID created by
-#'   [googledrive::as_id] from which to read ArchieML. Inputs of length > 1 or
-#'   with line breaks or non-existent files will always be treated as raw
-#'   ArchieML.  To read multple ArchieML inputs use a function such as [lapply].
+#'   [googledrive::as_id] from which to read ArchieML. Inputs of length > 1,
+#'   with line breaks, or non-existent file names will always be treated as raw
+#'   ArchieML.  To read multiple ArchieML inputs use a function such as
+#'   [lapply].
 #' @param simplifyVector,simplifyDataFrame,simplifyMatrix,flatten passed to
-#'   passed to \link[jsonlite]{fromJSON} to determine how the JSON generated
-#'   from is parsed.  If raw JSON outputs are desired use [aml_to_json]
+#'   \link[jsonlite]{fromJSON} to determine how the JSON generated from is
+#'   parsed.  If raw JSON outputs are desired use [aml_to_json]
 #' @param ... further arguments to be passed to[jsonlite::fromJSON], for
 #'   class-specific print methods
+#' @return A list of class "from_aml"
 #' @examples
 #' from_aml(aml = "key: value")
 #' from_aml("http://archieml.org/test/1.0/arrays.1.aml")
 #'
 #' \donttest{\dontrun{
 #' # See source at:
-#' https://drive.google.com/open?id=1oYHXxvzscBBSBhd6xg5ckUEZo3tLytk9zY0VV_Y7SGs
+#' # https://drive.google.com/open?id=1oYHXxvzscBBSBhd6xg5ckUEZo3tLytk9zY0VV_Y7SGs
 #' library(googledrive)
 #' from_aml(as_id("1oYHXxvzscBBSBhd6xg5ckUEZo3tLytk9zY0VV_Y7SGs"))
 #' }}
@@ -62,15 +64,16 @@ from_archie <- function(...) {
 #' [archieml-js](https://github.com/newsdev/archieml-js).
 #'
 #' @param aml a string, file, connection, URL, or  Google Drive ID created by
-#'   [googledrive::as_id] from which to read ArchieML. Inputs of length > 1 or
-#'   with line breaks or non-existent files will always be treated as raw
-#'   ArchieML.  To read multple ArchieML inputs use a function such as [lapply].
+#'   [googledrive::as_id] from which to read ArchieML. Inputs of length > 1,
+#'   with line breaks, or non-existent filenames will always be treated as raw
+#'   ArchieML.  To read multiple ArchieML inputs use a function such as [lapply].
 #' @param pretty prettify JSON output?
 #' @param indent if prettifying, what indent level? Passed to
 #'   \link[jsonlite]{prettify}.
 #' @importFrom jsonlite prettify
 #' @importFrom V8 new_context
 #' @export
+#' @return A length-1 character vector of class "json"
 #' @examples
 #' aml_to_json(aml = "key: value")
 #' aml_to_json("http://archieml.org/test/1.0/arrays.1.aml")
@@ -81,7 +84,7 @@ from_archie <- function(...) {
 #' library(googledrive)
 #' aml_to_json(as_id("1oYHXxvzscBBSBhd6xg5ckUEZo3tLytk9zY0VV_Y7SGs"),
 #'   pretty = TRUE)
-#' #}}
+#' }}
 #' @seealso [from_aml]
 #' @references \url{http://archieml.org/}
 aml_to_json <- function(aml, pretty = FALSE, indent = 4) {

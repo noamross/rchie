@@ -32,3 +32,9 @@ test_that("pretty-printing works", {
   imported <- aml_to_json("arrays_complex.10.aml", pretty = TRUE)
   expect_gte(length(grep("\\n", imported)), 1)
 })
+
+test_that("output is a length-1 character of class json", {
+  imported <- aml_to_json("arrays_complex.10.aml")
+  expect_s3_class(imported, c("character", "json"))
+  expect_equal(length(imported), 1)
+})

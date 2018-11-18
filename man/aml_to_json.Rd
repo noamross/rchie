@@ -8,14 +8,17 @@ aml_to_json(aml, pretty = FALSE, indent = 4)
 }
 \arguments{
 \item{aml}{a string, file, connection, URL, or  Google Drive ID created by
-\link[googledrive:as_id]{googledrive::as_id} from which to read ArchieML. Inputs of length > 1 or
-with line breaks or non-existent files will always be treated as raw
-ArchieML.  To read multple ArchieML inputs use a function such as \link{lapply}.}
+\link[googledrive:as_id]{googledrive::as_id} from which to read ArchieML. Inputs of length > 1,
+with line breaks, or non-existent filenames will always be treated as raw
+ArchieML.  To read multiple ArchieML inputs use a function such as \link{lapply}.}
 
 \item{pretty}{prettify JSON output?}
 
 \item{indent}{if prettifying, what indent level? Passed to
 \link[jsonlite]{prettify}.}
+}
+\value{
+A length-1 character vector of class "json"
 }
 \description{
 This imports data from  New York Times' ArchieML format as a JSON sting.
@@ -32,7 +35,7 @@ aml_to_json("http://archieml.org/test/1.0/arrays.1.aml")
 library(googledrive)
 aml_to_json(as_id("1oYHXxvzscBBSBhd6xg5ckUEZo3tLytk9zY0VV_Y7SGs"),
   pretty = TRUE)
-#}}
+}}
 }
 \references{
 \url{http://archieml.org/}

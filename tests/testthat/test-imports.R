@@ -10,6 +10,11 @@ test_that("import from string works", {
   expect_equivalent(imported, jsonlite::fromJSON("{\"key\":\"value\"}"))
 })
 
+test_that("Output is class from_aml", {
+  imported <- from_aml(aml = "key: value")
+  expect_s3_class(imported, "from_aml")
+})
+
 test_that("multiline inputs are always treated as raw", {
   imported <- from_aml("google_doc.txt\ngoogle_doc.txt")
   expect_equivalent(imported, list())

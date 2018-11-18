@@ -13,16 +13,20 @@ from_aml(aml, simplifyVector = FALSE,
 }
 \arguments{
 \item{aml}{a string, file, connection, URL, or  Google Drive ID created by
-\link[googledrive:as_id]{googledrive::as_id} from which to read ArchieML. Inputs of length > 1 or
-with line breaks or non-existent files will always be treated as raw
-ArchieML.  To read multple ArchieML inputs use a function such as \link{lapply}.}
+\link[googledrive:as_id]{googledrive::as_id} from which to read ArchieML. Inputs of length > 1,
+with line breaks, or non-existent file names will always be treated as raw
+ArchieML.  To read multiple ArchieML inputs use a function such as
+\link{lapply}.}
 
 \item{simplifyVector, simplifyDataFrame, simplifyMatrix, flatten}{passed to
-passed to \link[jsonlite]{fromJSON} to determine how the JSON generated
-from is parsed.  If raw JSON outputs are desired use \link{aml_to_json}}
+\link[jsonlite]{fromJSON} to determine how the JSON generated from is
+parsed.  If raw JSON outputs are desired use \link{aml_to_json}}
 
 \item{...}{further arguments to be passed to\link[jsonlite:fromJSON]{jsonlite::fromJSON}, for
 class-specific print methods}
+}
+\value{
+A list of class "from_aml"
 }
 \description{
 This imports data from  New York Times' ArchieML format as an R object. Text
@@ -39,7 +43,7 @@ from_aml("http://archieml.org/test/1.0/arrays.1.aml")
 
 \donttest{\dontrun{
 # See source at:
-https://drive.google.com/open?id=1oYHXxvzscBBSBhd6xg5ckUEZo3tLytk9zY0VV_Y7SGs
+# https://drive.google.com/open?id=1oYHXxvzscBBSBhd6xg5ckUEZo3tLytk9zY0VV_Y7SGs
 library(googledrive)
 from_aml(as_id("1oYHXxvzscBBSBhd6xg5ckUEZo3tLytk9zY0VV_Y7SGs"))
 }}
