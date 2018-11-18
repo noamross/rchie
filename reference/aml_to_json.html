@@ -99,7 +99,10 @@ archieml-js." />
   <a href="../news/index.html">Release Notes</a>
 </li>
 <li>
-  <a href="http://archieml.org/">ArchiML.org</a>
+  <a href="../CONTRIBUTING.html">Contributing</a>
+</li>
+<li>
+  <a href="http://archieml.org/">ArchieML.org</a>
 </li>
       </ul>
       
@@ -149,9 +152,9 @@ Text is parsed to JSON using
     <tr>
       <th>aml</th>
       <td><p>a string, file, connection, URL, or  Google Drive ID created by
-<a href='https://www.rdocumentation.org/packages/googledrive/topics/as_id'>googledrive::as_id</a> from which to read ArchieML. Inputs of length &gt; 1 or
-with line breaks or non-existent files will always be treated as raw
-ArchieML.  To read multple ArchieML inputs use a function such as <a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a>.</p></td>
+<a href='https://www.rdocumentation.org/packages/googledrive/topics/as_id'>googledrive::as_id</a> from which to read ArchieML. Inputs of length &gt; 1,
+with line breaks, or non-existent filenames will always be treated as raw
+ArchieML.  To read multiple ArchieML inputs use a function such as <a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a>.</p></td>
     </tr>
     <tr>
       <th>pretty</th>
@@ -163,6 +166,10 @@ ArchieML.  To read multple ArchieML inputs use a function such as <a href='https
 <a href='https://www.rdocumentation.org/packages/jsonlite/topics/prettify'>prettify</a>.</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A length-1 character vector of class "json"</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -179,13 +186,15 @@ ArchieML.  To read multple ArchieML inputs use a function such as <a href='https
 <span class='co'># https://drive.google.com/open?id=1oYHXxvzscBBSBhd6xg5ckUEZo3tLytk9zY0VV_Y7SGs</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>googledrive</span>)
 <span class='fu'>aml_to_json</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/googledrive/topics/as_id'>as_id</a></span>(<span class='st'>"1oYHXxvzscBBSBhd6xg5ckUEZo3tLytk9zY0VV_Y7SGs"</span>),
-  <span class='kw'>pretty</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>httpuv not installed, defaulting to out-of-band authentication</span></div><div class='output co'>#&gt; <span class='error'>Error: Can only use oob authentication in an interactive session</span></div><div class='input'>#</div></pre>
+  <span class='kw'>pretty</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>httpuv not installed, defaulting to out-of-band authentication</span></div><div class='output co'>#&gt; <span class='error'>Error: Can only use oob authentication in an interactive session</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#value">Value</a></li>
+
       <li><a href="#references">References</a></li>
 
       <li><a href="#see-also">See also</a></li>
@@ -198,7 +207,7 @@ ArchieML.  To read multple ArchieML inputs use a function such as <a href='https
 
       <footer>
       <div class="copyright">
-  <p>Developed by Noam Ross.</p>
+  <p>Developed by Noam Ross, Michael Strickland.</p>
 </div>
 
 <div class="pkgdown">

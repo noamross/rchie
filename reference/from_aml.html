@@ -100,7 +100,10 @@ jsonlite::fromJSON." />
   <a href="../news/index.html">Release Notes</a>
 </li>
 <li>
-  <a href="http://archieml.org/">ArchiML.org</a>
+  <a href="../CONTRIBUTING.html">Contributing</a>
+</li>
+<li>
+  <a href="http://archieml.org/">ArchieML.org</a>
 </li>
       </ul>
       
@@ -153,15 +156,16 @@ is parsed to JSON using
     <tr>
       <th>aml</th>
       <td><p>a string, file, connection, URL, or  Google Drive ID created by
-<a href='https://www.rdocumentation.org/packages/googledrive/topics/as_id'>googledrive::as_id</a> from which to read ArchieML. Inputs of length &gt; 1 or
-with line breaks or non-existent files will always be treated as raw
-ArchieML.  To read multple ArchieML inputs use a function such as <a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a>.</p></td>
+<a href='https://www.rdocumentation.org/packages/googledrive/topics/as_id'>googledrive::as_id</a> from which to read ArchieML. Inputs of length &gt; 1,
+with line breaks, or non-existent file names will always be treated as raw
+ArchieML.  To read multiple ArchieML inputs use a function such as
+<a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a>.</p></td>
     </tr>
     <tr>
       <th>simplifyVector, simplifyDataFrame, simplifyMatrix, flatten</th>
       <td><p>passed to
-passed to <a href='https://www.rdocumentation.org/packages/jsonlite/topics/fromJSON'>fromJSON</a> to determine how the JSON generated
-from is parsed.  If raw JSON outputs are desired use <a href='aml_to_json.html'>aml_to_json</a></p></td>
+<a href='https://www.rdocumentation.org/packages/jsonlite/topics/fromJSON'>fromJSON</a> to determine how the JSON generated from is
+parsed.  If raw JSON outputs are desired use <a href='aml_to_json.html'>aml_to_json</a></p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -169,6 +173,10 @@ from is parsed.  If raw JSON outputs are desired use <a href='aml_to_json.html'>
 class-specific print methods</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A list of class "from_aml"</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -199,20 +207,18 @@ class-specific print methods</p></td>
 #&gt; 
 #&gt; attr(,"class")
 #&gt; [1] "list"     "from_aml"</div><div class='input'>
-</div><div class='input'># See source at:
-https://drive.google.com/open?id=1oYHXxvzscBBSBhd6xg5ckUEZo3tLytk9zY0VV_Y7SGs
-library(googledrive)
-from_aml(as_id("1oYHXxvzscBBSBhd6xg5ckUEZo3tLytk9zY0VV_Y7SGs"))
-</div><div class='output co'>#&gt; <span class='error'>Error: &lt;text&gt;:2:7: unexpected '/'</span>
-#&gt; <span class='error'>1: # See source at:</span>
-#&gt; <span class='error'>2: https:/</span>
-#&gt; <span class='error'>         ^</span></div></pre>
+</div><div class='input'><span class='co'># See source at:</span>
+<span class='co'># https://drive.google.com/open?id=1oYHXxvzscBBSBhd6xg5ckUEZo3tLytk9zY0VV_Y7SGs</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>googledrive</span>)
+<span class='fu'>from_aml</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/googledrive/topics/as_id'>as_id</a></span>(<span class='st'>"1oYHXxvzscBBSBhd6xg5ckUEZo3tLytk9zY0VV_Y7SGs"</span>))</div><div class='output co'>#&gt; <span class='message'>httpuv not installed, defaulting to out-of-band authentication</span></div><div class='output co'>#&gt; <span class='error'>Error: Can only use oob authentication in an interactive session</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#value">Value</a></li>
+
       <li><a href="#details">Details</a></li>
 
       <li><a href="#references">References</a></li>
@@ -227,7 +233,7 @@ from_aml(as_id("1oYHXxvzscBBSBhd6xg5ckUEZo3tLytk9zY0VV_Y7SGs"))
 
       <footer>
       <div class="copyright">
-  <p>Developed by Noam Ross.</p>
+  <p>Developed by Noam Ross, Michael Strickland.</p>
 </div>
 
 <div class="pkgdown">
