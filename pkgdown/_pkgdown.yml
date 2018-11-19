@@ -4,7 +4,7 @@ url: https://noamross.github.io/rchie
 template:
   params:
     docsearch:
-      api_key: 2bf5efbf4437480db9685f3d09019982
+      api_key: a9043dbe195aaa2303fb60a3fd8a7576
       index_name: rchie
 
 navbar:
