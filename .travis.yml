@@ -14,7 +14,6 @@ addons:
 
 r_packages:
   - googledrive
-  - httpuv
 
 r_github_packages:
   - r-lib/pkgdown
