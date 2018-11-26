@@ -12,9 +12,6 @@ addons:
     packages:
       - libv8-dev
 
-r_packages:
-  - googledrive
-
 r_github_packages:
   - r-lib/pkgdown
   - tidyverse/googledrive
