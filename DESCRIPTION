@@ -26,7 +26,8 @@ Suggests:
     testthat,
     covr,
     googledrive,
-    curl
+    curl,
+    httpuv
 SystemRequirements: V8 <= 3.15: libv8-3.14-dev (deb), v8-314-devel (rpm), v8-3.14 (arch), v8@3.15 (homebrew)
 LazyData: TRUE
 RoxygenNote: 6.1.1
