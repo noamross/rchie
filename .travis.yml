@@ -13,7 +13,7 @@ addons:
       - libv8-dev
 
 r_packages:
-  - tidyverse/googledrive
+  - googledrive
 
 r_github_packages:
   - r-lib/pkgdown
