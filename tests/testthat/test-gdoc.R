@@ -1,11 +1,9 @@
 if (requireNamespace("googledrive") && Sys.getenv("RCHIE_DRIVE_KEY") != "") {
   context("Google Drive handling")
 
-  googledrive::drive_auth_config(
-    active = FALSE,
-    api_key = Sys.getenv("RCHIE_DRIVE_KEY"),
-    verbose = FALSE
-  )
+  library(googledrive)
+  drive_deauth()
+  drive_auth_config(api_key = Sys.getenv("RCHIE_DRIVE_KEY"))
 
   test_that("import from a Google Doc works", {
     gurl <- "https://docs.google.com/document/d/1oYHXxvzscBBSBhd6xg5ckUEZo3tLytk9zY0VV_Y7SGs/edit" # nolint

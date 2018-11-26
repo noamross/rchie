@@ -12,6 +12,9 @@ addons:
     packages:
       - libv8-dev
 
+r_packages:
+  - httpuv
+
 r_github_packages:
   - r-lib/pkgdown
   - tidyverse/googledrive
@@ -23,7 +26,7 @@ r_check_args: "--as-cran --run-dontrun"
 
 deploy:
   provider: script
-  script: Rscript -e 'googledrive::drive_auth_config(api_key = Sys.getenv("RCHIE_DRIVE_KEY")); pkgdown::deploy_site_github(new_process=FALSE)' || true
+  script: Rscript -e 'googledrive::drive_deauth();googledrive::drive_auth_config(api_key = Sys.getenv("RCHIE_DRIVE_KEY")); pkgdown::deploy_site_github(new_process=FALSE)' || true
   skip_cleanup: true
   on:
     branch: master
