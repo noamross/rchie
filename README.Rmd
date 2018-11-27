@@ -88,11 +88,9 @@ Drive. To use them, you must have the
 a `drive_id` object to `from_aml()`. Here we pull data from [this Google Doc](https://drive.google.com/open?id=1oYHXxvzscBBSBhd6xg5ckUEZo3tLytk9zY0VV_Y7SGs):
 
 ``` {r, include=FALSE}
-googledrive::drive_auth_config(
-  active = FALSE,
-  api_key = Sys.getenv("RCHIE_DRIVE_KEY"),
-  verbose = FALSE
-)
+library(googledrive)
+drive_deauth()
+googledrive::drive_auth_config(api_key = Sys.getenv("RCHIE_DRIVE_KEY"))
 ```
 
 
