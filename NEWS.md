@@ -1,9 +1,9 @@
-# Development version
+# rchie *development version*
 
 -  Switched to development version of googledrive and change
    associateed auth setup
 
-# rchie 1.0
+# rchie 1.0.0
 
 ***First Stable Release***
 
