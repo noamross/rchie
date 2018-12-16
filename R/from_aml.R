@@ -91,7 +91,7 @@ aml_to_json <- function(aml, pretty = FALSE, indent = 4) {
   aml <- read_aml(aml)
   aml <- paste(aml, collapse = "\n")
   ct <- new_context()
-  ct$source(system.file("archieml-js/archieml.js", package = "rchie"))
+  ct$source(system.file("htmlwidgets","archieml-js", "archieml.js", package = "rchie"))
   ct$assign("aml", aml)
   json <- ct$eval("JSON.stringify(archieml.load(aml));")
   class(json) <- "json"

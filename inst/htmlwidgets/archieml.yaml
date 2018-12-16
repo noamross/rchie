@@ -1,0 +1,9 @@
+dependencies:
+ - name: archieml-js
+   version: 0.4.2
+   src: htmlwidgets/archieml-js
+   script: archieml.js
+ - name: markdown-it
+   version: 8.4.2
+   src: htmlwidgets/markdown-it
+   script: markdown-it.min.js

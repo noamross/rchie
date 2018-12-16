@@ -23,6 +23,8 @@ Imports:
     V8,
     jsonlite
 Suggests:
+    htmlwidgets,
+    htmltools,
     testthat,
     covr,
     googledrive,
