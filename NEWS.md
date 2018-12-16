@@ -1,5 +1,8 @@
 # rchie *development version*
 
+-  Added htmlwidget to render AML from a remote source in-browser, so that
+   edits in a Google Doc source will update wihtout needing to re-render the
+   R Markdown document
 -  Switched to development version of googledrive and change
    associateed auth setup
 

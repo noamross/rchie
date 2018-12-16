@@ -21,8 +21,10 @@ BugReports: https://github.com/noamross/rchie/issues
 Encoding: UTF-8
 Imports:
     V8,
-    jsonlite
+    jsonlite,
 Suggests:
+    htmlwidgets,
+    htmltools,
     testthat,
     covr,
     googledrive,
