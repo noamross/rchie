@@ -1,7 +1,8 @@
-# rchie *development version*
+# rchie 1.0.1
 
+-  Fix character encoding issue by removing en-dashes from README
 -  Switched to development version of googledrive and change
-   associateed auth setup
+   associated auth setup
 
 # rchie 1.0.0
 
@@ -9,9 +10,9 @@
 
 * renamed `from_archie` to `from_aml`
 * Added `aml_to_json`
-* More robust, S3-powereed input options of string/file/url/Google Doc
+* More robust, S3-powered input options of string/file/url/Google Doc
 * Updated to archieml-js 4.2
 * Added Google Drive functionality
 * Full test suite
-* Improved documentaion
+* Improved documentation
 * Added a `NEWS.md` file to track changes to the package.
