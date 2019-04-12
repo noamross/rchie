@@ -17,3 +17,4 @@ tests/testthat/token_file.enc
 ^\.V8history$
 ^TODO\.md$
 ^CONTRIBUTING\.md$
+^cran-comments\.md$
