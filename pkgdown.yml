@@ -1,6 +1,6 @@
 pandoc: '2.2'
 pkgdown: 1.2.0.9000
-pkgdown_sha: c3ab80a37d51475cfe6294dd999588ed045e0ed4
+pkgdown_sha: ef7cd6b8d4297136192c3ddf4a67019e6eeb0a26
 articles: []
 urls:
   reference: https://noamross.github.io/rchie/reference
