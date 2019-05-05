@@ -3,9 +3,9 @@ if (requireNamespace("googledrive") && Sys.getenv("RCHIE_DRIVE_KEY") != "") {
 
   library(googledrive)
   drive_deauth()
-  drive_auth_config(api_key = Sys.getenv("RCHIE_DRIVE_KEY"))
+  drive_auth_config(active =  FALSE, api_key = Sys.getenv("RCHIE_DRIVE_KEY"))
 
-  test_that("import from a Google Doc works", {
+    test_that("import from a Google Doc works", {
     gurl <- "https://docs.google.com/document/d/1oYHXxvzscBBSBhd6xg5ckUEZo3tLytk9zY0VV_Y7SGs/edit" # nolint
     imported_g <- from_aml(googledrive::as_id(gurl))
     imported_txt <- from_aml("google_doc.txt")

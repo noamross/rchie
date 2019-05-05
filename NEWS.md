@@ -1,8 +1,7 @@
 # rchie 1.0.1
 
 -  Fix character encoding issue by removing en-dashes from README
--  Switched to development version of googledrive and change
-   associated auth setup
+-  Switched to updated googledrive auth setup
 
 # rchie 1.0.0
 
