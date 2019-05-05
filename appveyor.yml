@@ -16,6 +16,7 @@ cache:
 environment:
   USE_RTOOLS: true
   PKGTYPE: source
+  R_REMOTES_STANDALONE: true
 
 # Adapt as necessary starting from here
 
