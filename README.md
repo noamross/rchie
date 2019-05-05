@@ -47,7 +47,6 @@ returns an R list:
 
 ``` r
 library(rchie)
-#> Warning: package 'rchie' was built under R version 3.5.2
 data1 <- "
   [arrayName]
   
