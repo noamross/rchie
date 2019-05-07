@@ -1,3 +1,7 @@
+# rchie 1.0.2
+
+-  Fix character encoding tests on CRAN
+
 # rchie 1.0.1
 
 -  Fix character encoding issue by removing en-dashes from README

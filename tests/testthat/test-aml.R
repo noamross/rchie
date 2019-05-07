@@ -16,7 +16,7 @@ test_aml_file <- function(amlfile) {
 aml_tests <- list.files(path = ".", pattern = "\\.aml")
 
 for (amlfile in aml_tests) {
-  if (.Platform$OS.type == "windows" &&
+  if (!l10n_info()$`UTF-8` &&
     grepl("unicode", amlfile, fixed = TRUE)) {
     next
   }
