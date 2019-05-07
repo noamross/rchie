@@ -12,8 +12,8 @@ addons:
     packages:
       - libv8-dev
 
-r_github_packages:
-  - noamross/pkgdown
+r_packages:
+  - pkgdown
 
 after_success:
   - Rscript -e 'covr::codecov()'
