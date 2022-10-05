@@ -1,6 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+⛔️ ARCHIVED - No longer supported or maintained ⛔️
+
 # rchie: An R parser for ArchieML <img src="man/figures/logo.png" align="right" />
 
 [![Project Status: Unsupported – The project has reached a stable, usable state but the author(s) have ceased all work on it. A new maintainer may be desired.](https://www.repostatus.org/badges/latest/unsupported.svg)](https://www.repostatus.org/#unsupported)
