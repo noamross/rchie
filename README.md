@@ -3,9 +3,7 @@
 
 # rchie: An R parser for ArchieML <img src="man/figures/logo.png" align="right" />
 
-[![Project Status: Active - The project has reached a stable, usable
-state and is being actively
-developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![Project Status: Unsupported – The project has reached a stable, usable state but the author(s) have ceased all work on it. A new maintainer may be desired.](https://www.repostatus.org/badges/latest/unsupported.svg)](https://www.repostatus.org/#unsupported)
 [![CRAN
 version](http://www.r-pkg.org/badges/version/rchie)](https://cran.r-project.org/package=rchie)
 [![Build
